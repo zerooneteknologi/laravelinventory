@@ -108,7 +108,8 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    // 'faker_locale' => 'en_US',
+    'faker_locale' => env('FaKER_LOcalE', 'en_US'),
 
     /*
     |--------------------------------------------------------------------------

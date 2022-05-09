@@ -17,7 +17,11 @@ class SuplayerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'address' => $this->faker->address(),
+            'email' => $this->faker->freeEmail(),
+            'website' => $this->faker->domainName(),
+            'phoneNumber' => $this->faker->randomNumber(9, true)
         ];
     }
 }

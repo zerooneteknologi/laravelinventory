@@ -2,7 +2,7 @@
     <div class="navbar-wrapper  ">
         <div class="navbar-content scroll-div ">
 
-            {{-- <div class="">
+            <div class="">
                 <div class="main-menu-header">
                     <img class="img-radius" src="{{ asset('assets/images/user/avatar-2.jpg')}}" alt="User-Profile-Image">
                     <div class="user-details">
@@ -24,16 +24,19 @@
                         </li>
                     </ul>
                 </div>
-            </div> --}}
-
-            <ul class="nav pcoded-inner-navbar ">
-                <li class="nav-item">
-                    <a href="/dashboard" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+            </div>
+            
+            <ul class="nav pcoded-inner-navbar">
+                <li class="nav-item {{ Request::is('dashboard') ? 'active' : ''}}">
+                    <a href="/dashboard" class="nav-link "><span class="pcoded-micon "><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                 </li>
-                <li class="nav-item">
-                    <a href="/suplayer" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Suplayer</span></a>
+                <li class="nav-item {{ Request::is('suplayer*') ? 'active' : ''}}">
+                    <a href="/suplayer" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layers"></i></i></span><span class="pcoded-mtext">Suplayer</span></a>
                 </li>
-                <li class="nav-item pcoded-hasmenu">
+                <li class="nav-item {{ Request::is('produk*') ? 'active' : ''}}">
+                    <a href="/suplayer" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></i></span><span class="pcoded-mtext">produk</span></a>
+                </li>
+                <li class="nav-item pcoded-hasmenu ">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Page layouts</span></a>
                     <ul class="pcoded-submenu">
                         <li><a href="layout-vertical.html" target="_blank">Vertical</a></li>

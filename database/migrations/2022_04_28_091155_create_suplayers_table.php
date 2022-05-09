@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('suplayers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('address');
+            $table->string('email');
+            $table->string('website')->nullable();
+            $table->string('phoneNumber')->nullable();
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });
     }
