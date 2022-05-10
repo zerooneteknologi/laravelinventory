@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SuplayerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -24,3 +25,4 @@ Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('/suplayer', SuplayerController::class);
+Route::resource('/category', CategoryController::class);

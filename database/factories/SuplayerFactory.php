@@ -21,7 +21,7 @@ class SuplayerFactory extends Factory
             'address' => $this->faker->address(),
             'email' => $this->faker->freeEmail(),
             'website' => $this->faker->domainName(),
-            'phoneNumber' => $this->faker->randomNumber(9, true)
+            'phoneNumber' => $this->faker->phoneNumber()
         ];
     }
 }

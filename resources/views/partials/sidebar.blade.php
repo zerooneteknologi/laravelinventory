@@ -33,6 +33,9 @@
                 <li class="nav-item {{ Request::is('suplayer*') ? 'active' : ''}}">
                     <a href="/suplayer" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layers"></i></i></span><span class="pcoded-mtext">Suplayer</span></a>
                 </li>
+                <li class="nav-item {{ Request::is('category*') ? 'active' : ''}}">
+                    <a href="/category" class="nav-link "><span class="pcoded-micon"><i class="feather icon-grid"></i></i></span><span class="pcoded-mtext">Kategori</span></a>
+                </li>
                 <li class="nav-item {{ Request::is('produk*') ? 'active' : ''}}">
                     <a href="/suplayer" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></i></span><span class="pcoded-mtext">produk</span></a>
                 </li>

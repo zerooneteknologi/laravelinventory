@@ -89,7 +89,6 @@
         </div>
     </div>
     <!-- [ Main Content ] end -->
-    
 </div>
 
 @endsection

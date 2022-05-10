@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Suplayer;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -30,5 +31,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Suplayer::factory(10)->create();
+
+        Category::create([
+            'categoriName' => 'pakaian'
+        ]);
+        Category::create([
+            'categoriName' => 'makanan'
+        ]);
+        Category::create([
+            'categoriName' => 'aksesoris'
+        ]);
     }
 }
