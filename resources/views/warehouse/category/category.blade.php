@@ -14,7 +14,7 @@
                         <h5 class="m-b-10">Kategori Produk</h5>
                     </div>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ __('dashboard') }}"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="{{ __('/dashboard') }}"><i class="feather icon-home"></i></a></li>
                         <li class="breadcrumb-item"><a href="{{ __('category') }}">{{ __('category') }}</a></li>
                     </ul>
                 </div>

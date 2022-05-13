@@ -12,6 +12,13 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    // autorization
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('warehouse.category.category', [

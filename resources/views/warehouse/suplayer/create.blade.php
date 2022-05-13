@@ -13,7 +13,7 @@
 								<h5 class="m-b-10">Suplayer</h5>
 							</div>
 							<ul class="breadcrumb">
-								<li class="breadcrumb-item"><a href="{{ __('dashboard') }}"><i class="feather icon-home"></i></a></li>
+								<li class="breadcrumb-item"><a href="{{ __('/dashboard') }}"><i class="feather icon-home"></i></a></li>
 								<li class="breadcrumb-item"><a href="{{ __('create') }}">{{ __('create') }}</a></li>
 							</ul>
 						</div>

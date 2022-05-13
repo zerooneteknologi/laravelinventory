@@ -1,13 +1,16 @@
-@extends('layouts.app')
+@include('partials.meta')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<title>Inventory | @yield('title', 'Reset')</title>
 
-                <div class="card-body">
+<div class="auth-wrapper">
+	<div class="auth-content text-center">
+		<img src="{{ asset('assets/images/logo.png')}}" alt="" class="img-fluid mb-4">
+		<div class="card borderless">
+			<div class="row align-items-center text-center">
+				<div class="col-md-12">
+					<div class="card-body">
+						<h4 class="f-w-400">{{ __('Register') }}</h4>
+						<hr>
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
 
@@ -62,4 +65,5 @@
         </div>
     </div>
 </div>
-@endsection
+
+@include('partials.footer')

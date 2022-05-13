@@ -12,6 +12,13 @@ class SuplayerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    // Autorization
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('warehouse.suplayer.suplayer', [
@@ -47,7 +54,7 @@ class SuplayerController extends Controller
 
         Suplayer::create($validateData);
 
-        return redirect('/suplayer')->with('success', 'Suplayer ditambahkan');
+        return redirect('/suplayer')->with('success', 'Suplayer berhasil ditambahkan');
     }
 
     /**
