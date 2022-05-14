@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
+    // autorization
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
