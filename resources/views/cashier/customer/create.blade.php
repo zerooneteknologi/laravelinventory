@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Tambah Suplayer')
+@section('title', 'Tambah Member')
 
 @section('content')
 <div class="pcoded-content">
@@ -10,7 +10,7 @@
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Suplayer</h5>
+                        <h5 class="m-b-10">Klien</h5>
                     </div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ __('/dashboard') }}"><i class="feather icon-home"></i></a></li>
@@ -22,48 +22,41 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <h5>Tambah Suplayer</h5>
+            <h5>Tambah Member</h5>
             <hr>
             <div class="row">
-                <div class="col-md-8">
-                    <form method="POST" action="/suplayer">
+                <div class="col-md-10">
+                    <form method="POST" action="/customer">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Nama Lengkap</label>
-                            <input required name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name">
-                            @error('name')
+                            <label for="customerNo">No Member</label>
+                            <input required name="customerNo" type="text" class="form-control @error('customerNo') is-invalid @enderror" id="customerNo">
+                            @error('customerNo')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="address">Alamat</label>
-                            <input required name="address" type="text" class="form-control @error('address') is-invalid @enderror" id="address">
-                            @error('address')
+                            <label for="customerName">Nama member</label>
+                            <input required name="customerName" type="text" class="form-control @error('customerName') is-invalid @enderror" id="customerName">
+                            @error('customerName')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="phoneNumber">Nomor Telp</label>
-                            <input required name="phoneNumber" type="number" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber">
-                            @error('phoneNumber')
+                            <label for="customerAddress">Alamat member</label>
+                            <input required name="customerAddress" type="text" class="form-control @error('customerAddress') is-invalid @enderror" id="customerAddress">
+                            @error('customerAddress')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input required name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email">
+                            <label for="customerPhone">No Telp</label>
+                            <input required name="customerPhone" type="number" class="form-control @error('customerPhone') is-invalid @enderror" id="customerPhone">
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="website">Website</label>
-                            <input name="website" type="text" class="form-control @error('website') is-invalid @enderror" id="website">
-                            @error('website')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <button type="submit" class="btn  btn-primary">Tambah Suplayer</button>
+                        <button type="submit" class="btn  btn-primary">Tambah Member</button>
                     </form>
                 </div>
             </div>

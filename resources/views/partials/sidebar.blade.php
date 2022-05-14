@@ -37,7 +37,10 @@
                     <a href="/category" class="nav-link "><span class="pcoded-micon"><i class="feather icon-grid"></i></i></span><span class="pcoded-mtext">Kategori</span></a>
                 </li>
                 <li class="nav-item {{ Request::is('product*') ? 'active' : ''}}">
-                    <a href="/product" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></i></span><span class="pcoded-mtext">produk</span></a>
+                    <a href="/product" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></i></span><span class="pcoded-mtext">Produk</span></a>
+                </li>
+                <li class="nav-item {{ Request::is('customer*') ? 'active' : ''}}">
+                    <a href="/customer" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></i></span><span class="pcoded-mtext">klien</span></a>
                 </li>
                 <li class="nav-item pcoded-hasmenu ">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Page layouts</span></a>

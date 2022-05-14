@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    // aoutrization
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
