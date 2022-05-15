@@ -30,9 +30,9 @@
                         @csrf
                         @method('put')
                         <div class="form-group">
-                            <label for="name">Nama Kategori</label>
-                            <input value="{{ $categories->categoriName }}" required name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name">
-                            @error('name')
+                            <label for="categoriName">Nama Kategori</label>
+                            <input value="{{ $categories->categoriName }}" required name="categoriName" type="text" class="form-control @error('name') is-invalid @enderror" id="name">
+                            @error('categoriName')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             <button type="submit" class="btn  btn-primary mt-3">Edit Kategori</button>

@@ -24,7 +24,8 @@ class ProductFactory extends Factory
             'productName' => $this->faker->sentence(2),
             'brand' => $this->faker->words(2, true),
             'stock' => 100,
-            'price' => 2000
+            'sellingPrice' => 2500,
+            'purchasePrice' => 2000
         ];
     }
 }

@@ -55,7 +55,6 @@
                                 <th>Nama Produk</th>
                                 <th>Merk</th>
                                 <th>Stok</th>
-                                <th>Harga</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -67,7 +66,6 @@
                                 <td>{{ $product->productName }}</td>
                                 <td>{{ $product->brand }}</td>
                                 <td>{{ $product->stock }}</td>
-                                <td>Rp.{{ $product->price }}</td>
                                 <td>
                                     <a href="/product/{{ $product->id}}" class="badge badge-primary" >
                                         <i class="feather icon-eye"></i>

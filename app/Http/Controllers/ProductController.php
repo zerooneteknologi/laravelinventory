@@ -55,8 +55,11 @@ class ProductController extends Controller
             'suplayerId' => 'required|max:255',
             'brand' => 'required|max:255',
             'stock' => 'required|max:255',
-            'price' => 'required|max:255',
+            'purchasePrice' => 'required|max:255',
+            'sellingPrice' => 'required|max:255',
         ]);
+
+        // return dd($validateData);
 
         Product::create($validateData);
 
@@ -107,7 +110,8 @@ class ProductController extends Controller
             'suplayerId' => 'required|max:255',
             'brand' => 'required|max:255',
             'stock' => 'required|max:255',
-            'price' => 'required|max:255',
+            'purchasePrice' => 'required|max:255',
+            'sellingPrice' => 'required|max:255',
         ]);
 
         Product::where('id', $product->id)->update($validateData);

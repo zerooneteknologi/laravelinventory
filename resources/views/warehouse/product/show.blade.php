@@ -73,8 +73,12 @@
                                 <td>{{ $product->stock }}</td>
                             </tr>
                             <tr>
-                                <th>Harga</th>
-                                <td>Rp.{{ $product->price }}</td>
+                                <th>Harga Beli</th>
+                                <td>Rp.{{ number_format($product->purchasePrice,0) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Harga Beli</th>
+                                <td>Rp.{{ number_format($product->sellingPrice,0) }}</td>
                             </tr>
                         </thead>
                     </table>

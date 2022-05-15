@@ -20,8 +20,9 @@ return new class extends Migration
             $table->string('productCode');
             $table->string('productName');
             $table->string('brand');
-            $table->integer('stock');
-            $table->integer('price');
+            $table->integer('stock')->default('0');
+            $table->integer('purchasePrice')->nullable();
+            $table->integer('sellingPrice')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

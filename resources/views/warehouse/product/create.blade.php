@@ -62,9 +62,16 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="price">Harga</label>
-                            <input required name="price" type="number" class="form-control  @error('price') is-invalid @enderror" id="price">
-                            @error('price')
+                            <label for="purchasePrice">Harga Beli</label>
+                            <input required name="purchasePrice" type="number" class="form-control  @error('purchasePrice') is-invalid @enderror" id="purchasepPice">
+                            @error('purchasePrice')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="sellingPrice">Harga Jual</label>
+                            <input required name="sellingPrice" type="number" class="form-control  @error('sellingPrice') is-invalid @enderror" id="sellingPrice">
+                            @error('sellingPrice')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
