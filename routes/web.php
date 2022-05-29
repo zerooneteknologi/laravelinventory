@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SuplayerController;
@@ -30,3 +31,4 @@ Route::resource('/suplayer', SuplayerController::class);
 Route::resource('/category', CategoryController::class);
 Route::resource('/product', ProductController::class);
 Route::resource('/customer', CustomerController::class);
+Route::resource('/setting', CompanyController::class);
