@@ -79,6 +79,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <input type="hidden" name="oldPhoto" value="{{ $company->companyPhoto}}">
                     <div class="form-group row">
                         <label for="companyPhone" class="col-sm-3 col-form-label">Email</label>
                         <div class="col-sm-9">

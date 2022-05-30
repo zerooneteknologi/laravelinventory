@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -80,7 +81,9 @@ class CompanyController extends Controller
             'companyPhoto' => 'required|image|file|max:2048',
         ]);
 
-        $validateData['companyPhoto'] = $request->file('companyPhoto')->store('img.company.logo');
+        Storage::delete($request->oldPhoto);
+
+        $validateData['companyPhoto'] = $request->file('companyPhoto')->store('img/company/logo');
 
         Company::where('id', $company->id)->update($validateData);
 

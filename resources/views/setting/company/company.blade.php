@@ -28,7 +28,7 @@
     <div class="col-md-6 col-xl-4">
         <div class="card mb-3">
             @foreach ($companies as $company)    
-                <img class="img-fluid card-img-top" src="assets/images/slider/img-slide-3.jpg" alt="Card image cap">
+                <img class="img-fluid card-img-top" src="{{ asset('storage/' . $company->companyPhoto);}}" alt="{{ $company->companyName}}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $company->companyName}}</h5>
                     <hr>
