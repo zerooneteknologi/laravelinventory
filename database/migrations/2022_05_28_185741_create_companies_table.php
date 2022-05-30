@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('companyName');
             $table->string('companyAddress');
+            $table->string('companyEmail');
             $table->string('companyWebsite');
             $table->string('companyPhone');
             $table->string('companyPhoto');

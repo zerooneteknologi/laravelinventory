@@ -41,12 +41,19 @@
 	<!-- [ sample-page ] start -->
 	<div class="col-md-6 col-xl-8">
 		<div class="card">
-
+            {{-- alert start --}}
+            @if (session()->has('success'))    
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                {{ session('success')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            @endif
+            {{-- alert end --}}
 			<div class="card-header">
 				<h5>Profil preusahaan</h5>
 				<div class="card-header-right">
 					<div class="btn-group card-option">
-						<a  href="/setting/{{ $company->id}}/edit" class="btn dropdown-toggle btn-icon">
+						<a  href="/company/{{ $company->id}}/edit" class="btn dropdown-toggle btn-icon">
 							<i class="feather icon-edit-2"></i>
 						</a>
 					</div>
@@ -67,13 +74,19 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="companyWebsite" class="col-sm-3 col-form-label">Alamat</label>
+                        <label for="companyWebsite" class="col-sm-3 col-form-label">Website</label>
                         <div class="col-sm-9">
                             <input type="text" readonly class="form-control-plaintext" id="companyWebsite" value="{{ $company->companyWebsite}}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="companyPhone" class="col-sm-3 col-form-label">Alamat</label>
+                        <label for="companyEmail" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="text" readonly class="form-control-plaintext" id="companyEmail" value="{{ $company->companyEmail}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="companyPhone" class="col-sm-3 col-form-label">Telp</label>
                         <div class="col-sm-9">
                             <input type="text" readonly class="form-control-plaintext" id="companyPhone" value="{{ $company->companyPhone}}">
                         </div>

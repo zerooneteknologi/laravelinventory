@@ -14,9 +14,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return view('setting.company', [
-            'companies' => Company::all()
-        ]);
+        //
     }
 
     /**
@@ -59,7 +57,9 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        return $company;
+        return view('setting.company.edit', [
+            'company' => $company
+        ]);
     }
 
     /**
@@ -71,7 +71,20 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $validateData = $request->validate([
+            'companyName' => 'required|max:255',
+            'companyAddress' => 'required|max:255',
+            'companyEmail' => 'required|max:255|email',
+            'companyWebsite' => 'required|max:255',
+            'companyPhone' => 'required|max:255',
+            'companyPhoto' => 'required|image|file|max:2048',
+        ]);
+
+        $validateData['companyPhoto'] = $request->file('companyPhoto')->store('img.company.logo');
+
+        Company::where('id', $company->id)->update($validateData);
+
+        return redirect('/setting')->with('success', 'Profil perusahaan berhasil diubah!');
     }
 
     /**
