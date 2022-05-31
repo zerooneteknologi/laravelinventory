@@ -42,6 +42,9 @@
                 <li class="nav-item {{ Request::is('customer*') ? 'active' : ''}}">
                     <a href="/customer" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></i></span><span class="pcoded-mtext">klien</span></a>
                 </li>
+                <li class="nav-item {{ Request::is('setting*') ? 'active' : ''}}">
+                    <a href="/setting" class="nav-link "><span class="pcoded-micon"><i class="feather icon-settings"></i></i></span><span class="pcoded-mtext">Pengaturan</span></a>
+                </li>
                 <li class="nav-item pcoded-hasmenu ">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Page layouts</span></a>
                     <ul class="pcoded-submenu">

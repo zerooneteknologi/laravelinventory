@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Suplayer;
@@ -37,6 +38,8 @@ class DatabaseSeeder extends Seeder
         Product::factory(10)->create();
 
         Customer::factory(5)->create();
+
+        Company::factory(1)->create();
 
         Category::create([
             'categoriName' => 'pakaian'
