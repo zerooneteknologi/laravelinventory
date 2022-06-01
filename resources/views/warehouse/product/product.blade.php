@@ -43,7 +43,9 @@
                     <h5>Tabel Produk</h5>
                     <span class="d-block m-t-5">Daftar Produk</span>
                 </div>
-                <a href="/product/create" class="btn btn-success mb-3 float-right"><i class="feather icon-plus-square"></i> Tambah Produk</a>
+                @can('isWarehous')
+                    <a href="/product/create" class="btn btn-success mb-3 float-right"><i class="feather icon-plus-square"></i> Tambah Produk</a>
+                @endcan
             </div>
             <div class="card-body table-border-style">
                 <div class="table-responsive">
@@ -70,6 +72,7 @@
                                     <a href="/product/{{ $product->id}}" class="badge badge-primary" >
                                         <i class="feather icon-eye"></i>
                                     </a>
+                                    @can('isWarehous')
                                     <a href="product/{{ $product->id }}/edit" class="badge badge-warning" data-toggle="tooltip" data-placement="top" title="edit">
                                         <i class="feather icon-edit"></i>
                                     </a>
@@ -80,7 +83,7 @@
                                             <i class="feather icon-x-circle"></i>
                                         </button>
                                     </form>
-                                    </a>
+                                    @endcan
                                 </td>
                             </tr>
                             @endforeach
