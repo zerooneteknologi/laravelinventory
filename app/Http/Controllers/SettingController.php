@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -17,12 +18,9 @@ class SettingController extends Controller
 
     public function index()
     {
-        // if (!auth()->check() || auth()->user()->role !== 'owner' || auth()->user()->role !== '') {
-        //     abort(403);
-        // }
-
-        return view('setting.company.company', [
-            'companies' => Company::all()
+        return view('setting.setting', [
+            'companies' => Company::all(),
+            'users' => User::all()
         ]);
     }
 }

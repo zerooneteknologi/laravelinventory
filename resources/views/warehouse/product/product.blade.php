@@ -69,7 +69,7 @@
                                 <td>{{ $product->brand }}</td>
                                 <td>{{ $product->stock }}</td>
                                 <td>
-                                    <a href="/product/{{ $product->id}}" class="badge badge-primary" >
+                                    <a href="/product/{{ $product->id}}" class="badge badge-primary" data-toggle="tooltip" data-placement="top" title="detail">
                                         <i class="feather icon-eye"></i>
                                     </a>
                                     @can('isWarehous')

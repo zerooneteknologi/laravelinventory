@@ -39,11 +39,11 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('isCashier', function (User $user) {
-            return $user->role === 'marketing';
-        });
-
-        Gate::define('create-product', function (User $user) {
-            return $user->role === 'warehouse';
+            if ($user->role === 'marketing') {
+                return $user->role === 'marketing';
+            } elseif ($user->role === 'owner') {
+                return $user->role === 'owner';
+            }
         });
     }
 }

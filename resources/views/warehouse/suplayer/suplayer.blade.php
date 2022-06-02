@@ -64,7 +64,7 @@
                                 <td>{{ $suplayer->email }}</td>
                                 <td>{{ $suplayer->phoneNumber }}</td>
                                 <td>
-                                    <a href="/suplayer/{{ $suplayer->id}}" class="badge badge-primary" >
+                                    <a href="/suplayer/{{ $suplayer->id}}" class="badge badge-primary" data-toggle="tooltip" data-placement="top" title="detail">
                                         <i class="feather icon-eye"></i>
                                     </a>
                                     <a href="suplayer/{{ $suplayer->id }}/edit" enc class="badge badge-warning" data-toggle="tooltip" data-placement="top" title="edit">
@@ -77,7 +77,6 @@
                                             <i class="feather icon-x-circle"></i>
                                         </button>
                                     </form>
-                                    </a>
                                 </td>
                             </tr>
                             @endforeach

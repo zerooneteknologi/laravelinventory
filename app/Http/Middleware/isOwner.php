@@ -16,6 +16,12 @@ class isOwner
      */
     public function handle(Request $request, Closure $next)
     {
+        // autenticate user login
+        if (!auth()->check()) {
+            return redirect('login');
+        }
+
+        // autenticate role user
         if (auth()->user()->role !== 'owner') {
             abort(403);
         }

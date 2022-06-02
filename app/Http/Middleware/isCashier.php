@@ -17,6 +17,12 @@ class isCashier
      */
     public function handle(Request $request, Closure $next)
     {
+        // autenticate user login
+        if (!auth()->check()) {
+            return redirect('login');
+        }
+
+        // autenticate role user
         if (Auth::user()->role !== 'owner' && Auth::user()->role !== 'marketing') {
             abort(403);
         }
