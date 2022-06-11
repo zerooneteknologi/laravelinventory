@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Purchase;
+use App\Models\Credit;
 use Illuminate\Http\Request;
 
-class PurchaseController extends Controller
+class CreditController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PurchaseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \App\Models\Credit  $credit
      * @return \Illuminate\Http\Response
      */
-    public function show(Purchase $purchase)
+    public function show(Credit $credit)
     {
         //
     }
@@ -52,10 +52,10 @@ class PurchaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \App\Models\Credit  $credit
      * @return \Illuminate\Http\Response
      */
-    public function edit(Purchase $purchase)
+    public function edit(Credit $credit)
     {
         //
     }
@@ -64,10 +64,10 @@ class PurchaseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \App\Models\Credit  $credit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Purchase $purchase)
+    public function update(Request $request, Credit $credit)
     {
         //
     }
@@ -75,10 +75,10 @@ class PurchaseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \App\Models\Credit  $credit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Purchase $purchase)
+    public function destroy(Credit $credit)
     {
         //
     }

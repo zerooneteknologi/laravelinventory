@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Customer;
+use App\Models\Invoice;
+use App\Models\Order;
+use App\Models\Payment;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class InvoiceController extends Controller
 {
     /*
-    *autorizer
+    * autorizer
     **/
     public function __construct()
     {
-        $this->middleware('owner');
+        $this->middleware('isCashier');
     }
 
     /**
@@ -22,8 +27,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('setting.user.user', [
-            'users' => User::all()
+        return view('cashier.pos.invoice', [
+            'invoices' => Invoice::all()
         ]);
     }
 
@@ -34,8 +39,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('setting.user.create', [
-            'users' => User::all()
+        return view('cashier.pos.create', [
+            'products' => Product::all(),
+            'customers' => Customer::all(),
+            'payments' => Payment::all()
         ]);
     }
 
@@ -47,36 +54,32 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255',
-            'role' => 'required',
-            'password' => 'required'
-        ]);
-
-        User::create($validateData);
-
-        return redirect('/setting')->with('success', 'Pengguna berhasil ditambahkan');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Invoice $invoice)
     {
-        //
+        // $order = Order::where('invoiceId', 1)->get();
+        // return $order->product;
+        return view('cashier.pos.show', [
+            'invoice' => $invoice,
+            'orders' => Order::where('invoiceId', 1)->get()
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Invoice $invoice)
     {
         //
     }
@@ -85,10 +88,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Invoice $invoice)
     {
         //
     }
@@ -96,13 +99,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Invoice $invoice)
     {
-        $user->delete();
-
-        return redirect('/setting')->with('success', 'Pengguna berhasih di hapus!');
+        //
     }
 }

@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Customer;
+use App\Models\Invoice;
+use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Suplayer;
 use App\Models\User;
@@ -26,7 +29,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'owner',
-            'email' => 'onwer@gmail.com',
+            'email' => 'owner@gmail.com',
             'email_verified_at' => now(),
             'role' => 'owner',
             'password' => Hash::make('password'),
@@ -36,7 +39,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'cashier',
             'email' => 'cashier@gmail.com',
             'email_verified_at' => now(),
-            'role' => 'owner',
+            'role' => 'marketing',
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10)
         ]);
@@ -44,9 +47,19 @@ class DatabaseSeeder extends Seeder
             'name' => 'warehouse',
             'email' => 'warehouse@gmail.com',
             'email_verified_at' => now(),
-            'role' => 'owner',
+            'role' => 'warehouse',
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10)
+        ]);
+
+        Payment::create([
+            'payment' => 'Cash'
+        ]);
+        Payment::create([
+            'payment' => 'Transfer'
+        ]);
+        Payment::create([
+            'payment' => 'Credit'
         ]);
 
         Suplayer::factory(10)->create();
@@ -56,6 +69,10 @@ class DatabaseSeeder extends Seeder
         Customer::factory(5)->create();
 
         Company::factory(1)->create();
+
+        Invoice::factory(5)->create();
+
+        Order::factory(10)->create();
 
         Category::create([
             'categoriName' => 'pakaian'

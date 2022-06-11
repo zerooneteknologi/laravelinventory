@@ -33,7 +33,10 @@
                 {{-- autorizer --}}
                 @can('isCashier')
                     <li class="nav-item {{ Request::is('customer*') ? 'active' : ''}}">
-                        <a href="/customer" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></i></span><span class="pcoded-mtext">klien</span></a>
+                        <a href="/customer" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></i></span><span class="pcoded-mtext">Member</span></a>
+                    </li>
+                    <li class="nav-item {{ Request::is('invoice*') ? 'active' : ''}}">
+                        <a href="/invoice" class="nav-link "><span class="pcoded-micon"><i class="feather icon-shopping-cart"></i></i></span><span class="pcoded-mtext">Transaksi</span></a>
                     </li>
                 @endcan
 
