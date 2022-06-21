@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('customerId')->nullable();
             $table->string('invoiceNo')->unique();
             $table->timestamp('add_at');
-            $table->integer('payTotal');
+            $table->integer('payTotal')->nullable();
             $table->integer('discond')->nullable();
             $table->integer('cash')->nullable();
             $table->integer('refund')->nullable();

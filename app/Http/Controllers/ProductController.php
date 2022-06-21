@@ -142,4 +142,11 @@ class ProductController extends Controller
 
         return back()->with('success', 'Produk berhasil di hapus!');
     }
+
+    public function getproduct(Product $product)
+    {
+        return response()->json([
+            'data' => $product
+        ]);
+    }
 }

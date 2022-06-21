@@ -1,3 +1,4 @@
+
 @extends('layouts.main')
 
 @section('title', 'Transaksi')
@@ -44,16 +45,18 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group row">
-                            <label for="customerNo" class="col-sm-5 col-form-label">Nomor Member</label>
-                            <div class="col-sm-7">
-                                <input type="text" readonly class="form-control-plaintext" id="customerNo" value=": {{ $invoice->customer->customerNo }}">
+                        @if ($invoice->customerId != 0)
+                            <div class="form-group row">
+                                <label for="customerNo" class="col-sm-5 col-form-label">Nomor Member</label>
+                                <div class="col-sm-7">
+                                    <input type="text" readonly class="form-control-plaintext" id="customerNo" value=": {{ $invoice->customer->customerNo }}">
+                                </div>
+                                <label for="customerName" class="col-sm-5 col-form-label">Nama Member</label>
+                                <div class="col-sm-7">
+                                    <input type="text" readonly class="form-control-plaintext" id="customerName" value=": {{ $invoice->customer->customerName }}">
+                                </div>
                             </div>
-                            <label for="customerName" class="col-sm-5 col-form-label">Nama Member</label>
-                            <div class="col-sm-7">
-                                <input type="text" readonly class="form-control-plaintext" id="customerName" value=": {{ $invoice->customer->customerName }}">
-                            </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
                 <h5 class="mt-5">Daftar Barang</h5>
@@ -95,6 +98,14 @@
                             <label for="total" class="col-sm-5 col-form-label">Total</label>
                             <div class="col-sm-7">
                                 <input type="text" readonly class="form-control-plaintext" id="total" value=": Rp. {{ number_format($invoice->payTotal,0) }}">
+                            </div>
+                            <label for="cash" class="col-sm-5 col-form-label">Jumlah Bayar</label>
+                            <div class="col-sm-7">
+                                <input type="text" readonly class="form-control-plaintext" id="cash" value=": Rp. {{ number_format($invoice->cash,0) }}">
+                            </div>
+                            <label for="refund" class="col-sm-5 col-form-label">Jumlah Bayar</label>
+                            <div class="col-sm-7">
+                                <input type="text" readonly class="form-control-plaintext" id="refund" value=": Rp. {{ number_format($invoice->refund,0) }}">
                             </div>
                         </div>
                     </div>

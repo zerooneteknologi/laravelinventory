@@ -33,9 +33,13 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 Route::resource('/suplayer', SuplayerController::class);
 Route::resource('/category', CategoryController::class)->except(['create', 'show']);
 Route::resource('/product', ProductController::class);
+Route::get('product/getproduct/{product:productCode}', [ProductController::class, 'getproduct']);
+
 Route::resource('/customer', CustomerController::class);
+Route::get('/customer/getcode/{customer:customerNo}', [CustomerController::class, 'getcode']);
+
 Route::resource('/company', CompanyController::class)->only(['edit', 'update']);
 Route::resource('/user', UserController::class)->except(['edit', 'update', 'show']);
-Route::resource('/invoice', InvoiceController::class)->except(['edit', 'update', 'destroy']);
+Route::resource('/invoice', InvoiceController::class)->except(['destroy']);
 
 Route::get('/setting', [SettingController::class, 'index']);

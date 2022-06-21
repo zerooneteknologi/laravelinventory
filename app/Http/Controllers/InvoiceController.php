@@ -54,7 +54,27 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customerId = '';
+        if (!empty($request->customerId)) {
+            $customerId = $request->customerId;
+        }
+
+        $invoice = Invoice::insertGetId([
+            'customerId' => (int)$customerId,
+            'invoiceNo' => $request->invoiceNo,
+            'add_at' => now(),
+        ]);
+
+        foreach ($request->productId as $key => $productId) {
+            $data = new Order();
+            $data->productId = $productId;
+            $data->invoiceId = $invoice;
+            $data->qty = $request->qty[$key];
+            $data->total = (int) str_replace(",", "", $request->subTotal[$key]);
+            $data->save();
+        }
+
+        return redirect("/invoice/$invoice/edit");
     }
 
     /**
@@ -65,8 +85,6 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        // $order = Order::where('invoiceId', 1)->get();
-        // return $order->product;
         return view('cashier.pos.show', [
             'invoice' => $invoice,
             'orders' => Order::where('invoiceId', 1)->get()
@@ -81,7 +99,12 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        //
+        return view('cashier.pos.edit', [
+            'invoice' => $invoice,
+            'orders' => Order::where('invoiceId', 1)->get(),
+            'payTotal' => Order::where('invoiceId', 1)->sum("total"),
+            'payments' => Payment::all()
+        ]);
     }
 
     /**
@@ -93,7 +116,13 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        //
+        $data = Invoice::where('id', $invoice->id)->update([
+            'payTotal' => (int) str_replace(",", "", $request->payTotal),
+            'cash' => (int) str_replace(",", "", $request->cash),
+            'refund' => (int) str_replace(",", "", $request->refund)
+        ]);
+
+        return redirect('/invoice');
     }
 
     /**

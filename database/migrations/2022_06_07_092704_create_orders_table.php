@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('invoiceId');
+            $table->foreignId('invoiceId')->nullable();
             $table->foreignId('productId');
             $table->integer('qty');
             $table->integer('total');

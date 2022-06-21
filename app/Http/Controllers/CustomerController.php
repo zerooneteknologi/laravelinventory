@@ -113,4 +113,12 @@ class CustomerController extends Controller
 
         return redirect('/customer')->with('success', 'Member Berhasil dihapus!');
     }
+
+    public function getcode(Customer $customer)
+    {
+        // return $customer;
+        return response()->json([
+            'data' => $customer
+        ]);
+    }
 }
