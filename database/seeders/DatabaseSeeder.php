@@ -5,7 +5,9 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Customer;
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\Purchase;
 use App\Models\Suplayer;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -50,5 +52,8 @@ class DatabaseSeeder extends Seeder
         Category::create([
             'categoriName' => 'aksesoris'
         ]);
+
+        Purchase::factory(5)->create();
+        Order::factory(10)->create();
     }
 }

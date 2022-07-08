@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
+
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,9 @@ class PurchaseFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'purchaseNo' => Str::random(5),
+            'date' => now(),
+            'payTotal' => $this->faker->randomNumber(4, true)
         ];
     }
 }

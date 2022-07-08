@@ -14,7 +14,9 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        //
+        return view('warehouse.po.purchase', [
+            'purchases' => Purchase::all()
+        ]);
     }
 
     /**

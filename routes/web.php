@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SuplayerController;
 use Illuminate\Support\Facades\Route;
@@ -33,5 +34,6 @@ Route::resource('/category', CategoryController::class);
 Route::resource('/product', ProductController::class);
 Route::resource('/customer', CustomerController::class);
 Route::resource('/company', CompanyController::class);
+Route::resource('/purchase', PurchaseController::class);
 
 Route::get('/setting', [SettingController::class, 'index']);
