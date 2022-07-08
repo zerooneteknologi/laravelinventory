@@ -16,7 +16,7 @@ class SuplayerController extends Controller
     // Autorization
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('isWarehous');
     }
 
     public function index()

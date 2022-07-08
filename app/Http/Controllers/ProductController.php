@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Suplayer;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -34,6 +35,8 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('isWarehous');
+
         return view('warehouse.product.create', [
             'suplayers' => Suplayer::all(),
             'categories' => Category::all()
@@ -48,6 +51,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('isWarehous');
+
         $validateData = $request->validate([
             'productCode' => 'required|max:255',
             'productName' => 'required|max:255',
@@ -87,6 +92,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $this->authorize('isWarehous');
+
         return view('warehouse.product.edit', [
             'products' => $product,
             'categories' => Category::all(),
@@ -103,6 +110,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        $this->authorize('isWarehous');
+
         $validateData = $request->validate([
             'productCode' => 'required|max:255',
             'productName' => 'required|max:255',
@@ -127,6 +136,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $this->authorize('isWarehous');
+
         $product->delete();
 
         return back()->with('success', 'Produk berhasil di hapus!');

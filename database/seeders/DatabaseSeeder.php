@@ -22,14 +22,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(5)->create();
+        // User::factory(5)->create();
 
         User::create([
-            'name' => 'sasanurjaman',
-            'email' => 'nurjamansasa97@gmail.com',
+            'name' => 'owner',
+            'email' => 'onwer@gmail.com',
             'email_verified_at' => now(),
             'role' => 'owner',
-            'password' => Hash::make('sathista'),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10)
+        ]);
+        User::create([
+            'name' => 'cashier',
+            'email' => 'cashier@gmail.com',
+            'email_verified_at' => now(),
+            'role' => 'owner',
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10)
+        ]);
+        User::create([
+            'name' => 'warehouse',
+            'email' => 'warehouse@gmail.com',
+            'email_verified_at' => now(),
+            'role' => 'owner',
+            'password' => Hash::make('password'),
             'remember_token' => Str::random(10)
         ]);
 

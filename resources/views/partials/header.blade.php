@@ -162,7 +162,7 @@
                     <div class="dropdown-menu dropdown-menu-right profile-notification">
                         <div class="pro-head">
                             <img src="{{asset('assets/images/user/avatar-1.jpg')}}" class="img-radius" alt="User-Profile-Image">
-                            <span>John Doe</span>
+                            <span>{{ auth()->user()->name }}</span>
                             <a class="dud-logout" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">

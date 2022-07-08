@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Storage;
 class CompanyController extends Controller
 {
     /**
+     * autorization role
+     */
+    public function __construct()
+    {
+        $this->middleware('isOwner');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

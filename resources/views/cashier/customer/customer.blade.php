@@ -64,8 +64,8 @@
                                     <td>{{ $customer->customerName}}</td>
                                     <td>{{ $customer->customerPhone}}</td>
                                     <td>
-                                        <a href="/customer/{{ $customer->id }}" class="badge badge-info" ><i class="feather icon-eye"></i></a>
-                                        <a href="/customer/{{ $customer->id}}/edit" class="badge badge-warning"><i class="feather icon-edit"></i></a>
+                                        <a href="/customer/{{ $customer->id }}" class="badge badge-info" data-toggle="tooltip" data-placement="top" title="detail"><i class="feather icon-eye"></i></a>
+                                        <a href="/customer/{{ $customer->id}}/edit" class="badge badge-warning" data-toggle="tooltip" data-placement="top" title="edit"><i class="feather icon-edit"></i></a>
                                         <form action="{{ route('customer.destroy', $customer->id)}}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
