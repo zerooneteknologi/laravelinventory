@@ -36,12 +36,16 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>No PO</th>
-                                    <td>{{ $purchase->purchaseNo}}</td>
+                                    <th width="30%" >No PO</th>
+                                    <td width="70%" >{{ $purchase->purchaseNo}}</td>
                                 </tr>
                                 <tr>
                                     <th>Tanggal dibuat</th>
                                     <td>{{ $purchase->date}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Total Pembelian</th>
+                                    <td>Rp. {{ number_format($purchase->payTotal, 0)}}</td>
                                 </tr>
                             </thead>
                         </table>
@@ -68,7 +72,8 @@
                                     <td>{{ $order->product->productCode}}</td>
                                     <td>{{ $order->product->productName}}</td>
                                     <td>{{ $order->qty}}</td>
-                                    <td>{{ $order->subTotal}}</td>
+                                    <td>Rp. {{ number_format($order->product->purchasePrice,0)}}</td>
+                                    <td>Rp. {{ number_format($order->subTotal,0) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

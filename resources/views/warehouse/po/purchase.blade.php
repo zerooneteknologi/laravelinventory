@@ -42,6 +42,7 @@
                                 <th>No PO</th>
                                 <th>Tanggal</th>
                                 <th>Jumlah</th>
+                                <th>Status</th>
                                 <th>aksi</th>
                             </tr>
                         </thead>
@@ -51,7 +52,8 @@
                                     <td>{{ $loop->iteration}}</td>
                                     <td>{{ $purchase->purchaseNo}}</td>
                                     <td>{{ $purchase->date}}</td>
-                                    <td>{{ $purchase->payTotal}}</td>
+                                    <td>Rp. {{ number_format($purchase->payTotal,0) }}</td>
+                                    <td>{{ $purchase->status}}</td>
                                     <td>
                                         <a data-toggle="tooltip" data-placement="top" title="detail" class="badge badge-info" href="/purchase/{{$purchase->id}}"><i class="feather icon-eye"></i></a>
                                         <a data-toggle="tooltip" data-placement="top" title="cetak" class="badge badge-secondary" href="#"><i class="feather icon-printer"></i></a>

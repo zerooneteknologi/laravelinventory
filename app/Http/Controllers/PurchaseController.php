@@ -27,7 +27,7 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        //
+        return view('warehouse.po.create');
     }
 
     /**
@@ -38,7 +38,7 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 
     }
 
     /**
@@ -51,7 +51,7 @@ class PurchaseController extends Controller
     {
         return view('warehouse.po.show', [
             'purchase' => $purchase,
-            'orders' => Order::where('purchaseNo', $purchase->id)
+            'orders' => Order::where('purchaseId', $purchase->id)->get()
         ]);
     }
 
