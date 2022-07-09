@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
 
@@ -48,7 +49,10 @@ class PurchaseController extends Controller
      */
     public function show(Purchase $purchase)
     {
-        //
+        return view('warehouse.po.show', [
+            'purchase' => $purchase,
+            'orders' => Order::where('purchaseNo', $purchase->id)
+        ]);
     }
 
     /**
