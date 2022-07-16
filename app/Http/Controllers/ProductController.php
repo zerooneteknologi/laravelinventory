@@ -131,4 +131,11 @@ class ProductController extends Controller
 
         return back()->with('success', 'Produk berhasil di hapus!');
     }
+
+    public function checksuplayer(Request $request)
+    {
+        return response()->json([
+            'data' => Product::where('suplayerId', $request->id)->get()
+        ]);
+    }
 }

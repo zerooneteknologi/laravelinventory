@@ -37,3 +37,7 @@ Route::resource('/company', CompanyController::class);
 Route::resource('/purchase', PurchaseController::class);
 
 Route::get('/setting', [SettingController::class, 'index']);
+Route::get('/getproduct', [PurchaseController::class, 'getproduct']);
+Route::get('/checksuplayer', [ProductController::class, 'checksuplayer']);
+Route::post('/createdraf', [PurchaseController::class, 'createdraf']);
+Route::post('/deletedraf', [PurchaseController::class, 'deletedraf']);

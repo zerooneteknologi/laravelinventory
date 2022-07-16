@@ -31,7 +31,8 @@
 				<h5>Buat PO Baru</h5>
 			</div>
 			<div class="card-body">
-				<form>
+				<form method="POST" action="/purchase">
+                    @csrf
                     <div class="form-group row">
                         <label for="purchaseNo" class="col-sm-3 col-form-label">No PO</label>
                         <div class="col-sm-9">
@@ -43,7 +44,9 @@
                         <div class="col-sm-9">
                             <select name="suplayerId" class="form-control" id="suplayerId">
                                 <option>Pilih Suplayer</option>
-                                <option>2</option>
+                                @foreach ($suplayers as $suplayer)
+                                    <option value="{{ $suplayer->id}}">{{ $suplayer->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -51,35 +54,16 @@
                     <hr>
                     <!-- [ product table ] start -->
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table id="product" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
+                                    <th width="20%">Kode Produk</th>
+                                    <th width="30%">Nama Produk</th>
+                                    <th width="20%">Harga Jual</th>
+                                    <th width="10%">qty</th>
+                                    <th width="20%">Jumlah</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
                         </table>
                     </div>
                     <!-- [ product table ] end -->
@@ -104,3 +88,68 @@
 <!-- [ Main Content ] end -->
 </div>
 @endsection
+
+@push('script')
+    <script>
+        // get product wher id suplayer start
+        $('#suplayerId').change(function(e)
+        {
+            deletedraf()
+            $('tbody').remove()
+            $.ajax(
+            {
+                type: 'get',
+                dataType: 'json',
+                url: "/checksuplayer/",
+                data: { id : $(this).val() },
+                success: function(data)
+                {
+                    // read product
+                    $.each(data, function(key, value)
+                    {
+                        $.each(value, function(i, dat)
+                        {
+                            let product = `<tbody>
+                                            <tr>
+                                                <td><input name="productCode" type="text" readonly class="form-control-plaintext" value="${dat.productCode}"></td>
+                                                <td><input name="productName" type="text" readonly class="form-control-plaintext" value="${dat.productName}"></td>
+                                                <td><input id="sellingPrice" name="sellingPrice" type="text" readonly class="form-control-plaintext" value="${dat.sellingPrice}"></td>
+                                                <td><input value="0" id="qty" name="qty" class="form-control form-control-sm" type="number"></td>
+                                                <td><input value="0" id="subTotal" name="subTotal" type="text" readonly class="form-control-plaintext"></td>
+                                            </tr>
+                                        </tbody>`
+                            $('#product').append(product)
+                            creatdraf();
+                        })
+                    })
+                    // read product end
+                }
+            })
+
+        })
+        // get product wher id suplayer end
+
+        // edit qyt start
+        const product = document.querySelector('#product');
+        product.addEventListener('change', function(e)
+        {
+            let total = parseInt(e.target.value)*parseInt(e.target.parentElement.previousElementSibling.firstChild.value);
+            let subTotal = e.target.parentElement.nextElementSibling.firstChild
+            subTotal.value = total;
+        })
+        // edit qyt end
+
+        function creatdraf()
+        {
+            $.post('/createdraf', $('form').serialize())
+        }
+
+        function deletedraf()
+        {
+            // $.post('/deletedraf');
+            $.post('/deletedraf', $('form').serialize())
+            
+        }
+
+    </script>
+@endpush

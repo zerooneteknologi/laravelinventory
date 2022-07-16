@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DrafProduct;
 use App\Models\Order;
 use App\Models\Purchase;
+use App\Models\Suplayer;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -27,7 +29,9 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        return view('warehouse.po.create');
+        return view('warehouse.po.create', [
+            'suplayers' => Suplayer::all()
+        ]);
     }
 
     /**
@@ -38,7 +42,7 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        return $request;
     }
 
     /**
@@ -87,5 +91,25 @@ class PurchaseController extends Controller
     public function destroy(Purchase $purchase)
     {
         //
+    }
+
+    public function read()
+    {
+        // 
+    }
+
+    public function createdraf(Request $request)
+    {
+        $data = new DrafProduct;
+        $data->selling = $request->sellingPrice;
+        $data->qty = $request->qty;
+        $data->total = $request->subTotal;
+        $data->save();
+    }
+
+    public function deletedraf()
+    {
+        $data = new DrafProduct();
+        $data->truncate();
     }
 }
