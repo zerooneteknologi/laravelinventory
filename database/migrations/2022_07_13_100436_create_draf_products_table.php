@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('draf_products', function (Blueprint $table) {
             $table->id();
-            $table->integer('selling');
-            $table->integer('qty')->nullable();
-            $table->integer('total')->nullable();
+            $table->string('productId');
+            $table->string('productCode');
+            $table->string('productName');
+            $table->integer('price');
+            $table->integer('qty');
+            $table->integer('total');
             $table->timestamps();
         });
     }

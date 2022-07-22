@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DrafProduct;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Suplayer;
 use Illuminate\Http\Request;
@@ -15,6 +16,11 @@ class PurchaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
     public function index()
     {
         return view('warehouse.po.purchase', [
@@ -42,7 +48,21 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $purchase = Purchase::insertGetId([
+            'purchaseNo' => $request->purchaseNo,
+            'date' => now(),
+            'payTotal' => $request->payTotal
+        ]);
+
+        foreach ($request->productId as $key => $productId) {
+            Order::insert([
+                'purchaseId' => $purchase,
+                'productId' => $productId,
+                'qty' => $request->qty[$key],
+                'subTotal' => $request->subTotal[$key]
+            ]);
+        }
+        return redirect('/purchase');
     }
 
     /**
@@ -82,6 +102,13 @@ class PurchaseController extends Controller
         //
     }
 
+    public function checksuplayer(Request $request)
+    {
+        return response()->json([
+            'data' => Product::where('suplayerId', $request->id)->get()
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -91,25 +118,5 @@ class PurchaseController extends Controller
     public function destroy(Purchase $purchase)
     {
         //
-    }
-
-    public function read()
-    {
-        // 
-    }
-
-    public function createdraf(Request $request)
-    {
-        $data = new DrafProduct;
-        $data->selling = $request->sellingPrice;
-        $data->qty = $request->qty;
-        $data->total = $request->subTotal;
-        $data->save();
-    }
-
-    public function deletedraf()
-    {
-        $data = new DrafProduct();
-        $data->truncate();
     }
 }

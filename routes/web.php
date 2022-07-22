@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SettingController;
@@ -34,10 +35,14 @@ Route::resource('/category', CategoryController::class);
 Route::resource('/product', ProductController::class);
 Route::resource('/customer', CustomerController::class);
 Route::resource('/company', CompanyController::class);
+
 Route::resource('/purchase', PurchaseController::class);
+Route::get('/checksuplayer', [PurchaseController::class, 'checksuplayer']);
+
+Route::post('/index', [OrderController::class, 'index']);
+Route::post('/store', [OrderController::class, 'store']);
+Route::post('/update/{id}', [OrderController::class, 'update']);
+Route::post('/destroy/{id}', [OrderController::class, 'destroy']);
+Route::post('/deletedraf', [OrderController::class, 'deletedraf']);
 
 Route::get('/setting', [SettingController::class, 'index']);
-Route::get('/getproduct', [PurchaseController::class, 'getproduct']);
-Route::get('/checksuplayer', [ProductController::class, 'checksuplayer']);
-Route::post('/createdraf', [PurchaseController::class, 'createdraf']);
-Route::post('/deletedraf', [PurchaseController::class, 'deletedraf']);

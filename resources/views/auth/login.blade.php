@@ -4,7 +4,7 @@
 
 <div class="auth-wrapper">
 	<div class="auth-content text-center">
-		<img src="{{ asset('assets/images/logo.png') }}" alt="" class="img-fluid mb-4">
+		<img src="{{ asset('assets/images/Logo-Abadimas.png') }}" alt="" class="img-fluid mb-4">
 		<div class="card borderless">
 			<div class="row align-items-center ">
 				<div class="col-md-12">
@@ -43,7 +43,6 @@
 									{{ __('Forgot Your Password?') }}
 								</a>
 							@endif</p>
-							<p class="mb-0 text-muted">Don’t have an account? <a href="/register" class="f-w-400">Register</a></p>
 						</form>
 					</div>
 				</div>

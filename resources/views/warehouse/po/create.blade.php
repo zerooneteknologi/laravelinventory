@@ -35,7 +35,7 @@
                     @csrf
                     <div class="form-group row">
                         <label for="purchaseNo" class="col-sm-3 col-form-label">No PO</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-9" id="product">
                             <input required name="purchaseNo" type="text" class="form-control" id="purchaseNo">
                         </div>
                     </div>
@@ -53,27 +53,8 @@
                     <h5 class="mt-5">Daftar Barang</h5>
                     <hr>
                     <!-- [ product table ] start -->
-                    <div class="table-responsive">
-                        <table id="product" class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th width="20%">Kode Produk</th>
-                                    <th width="30%">Nama Produk</th>
-                                    <th width="20%">Harga Jual</th>
-                                    <th width="10%">qty</th>
-                                    <th width="20%">Jumlah</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+                    <div id="page"></div>
                     <!-- [ product table ] end -->
-                    <hr>
-                    <div class="form-group row">
-                        <label for="payTotal" class="col-sm-3 col-form-label col-form-label-lg">Jumlah Bayar</label>
-                        <div class="col-sm-9">
-                            <input readonly name="payTotal" type="text" class="form-control" id="payTotal">
-                        </div>
-                    </div>
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <button type="submit" class="btn  btn-primary">Buat PO</button>
@@ -95,55 +76,96 @@
         $('#suplayerId').change(function(e)
         {
             deletedraf()
-            $('tbody').remove()
+            $('#id').remove()
             $.ajax(
             {
                 type: 'get',
                 dataType: 'json',
                 url: "/checksuplayer/",
                 data: { id : $(this).val() },
-                success: function(data)
+                success: function(data, status)
                 {
                     // read product
                     $.each(data, function(key, value)
                     {
-                        $.each(value, function(i, dat)
-                        {
-                            let product = `<tbody>
-                                            <tr>
-                                                <td><input name="productCode" type="text" readonly class="form-control-plaintext" value="${dat.productCode}"></td>
-                                                <td><input name="productName" type="text" readonly class="form-control-plaintext" value="${dat.productName}"></td>
-                                                <td><input id="sellingPrice" name="sellingPrice" type="text" readonly class="form-control-plaintext" value="${dat.sellingPrice}"></td>
-                                                <td><input value="0" id="qty" name="qty" class="form-control form-control-sm" type="number"></td>
-                                                <td><input value="0" id="subTotal" name="subTotal" type="text" readonly class="form-control-plaintext"></td>
-                                            </tr>
-                                        </tbody>`
-                            $('#product').append(product)
-                            creatdraf();
+                        $.each(value, function(i, dat){
+                            let product = {
+                                productId : dat.id,
+                                productCode : dat.productCode,
+                                productName : dat.productName,
+                                sellingPrice : dat.sellingPrice,
+                                qty : 0,
+                                subTotal : 0
+                            }
+                            index()
+                            store(product);
                         })
-                    })
-                    // read product end
+                    }) 
                 }
             })
 
         })
-        // get product wher id suplayer end
+        
 
-        // edit qyt start
-        const product = document.querySelector('#product');
-        product.addEventListener('change', function(e)
+        // read drafPrduct
+        function index()
         {
-            let total = parseInt(e.target.value)*parseInt(e.target.parentElement.previousElementSibling.firstChild.value);
-            let subTotal = e.target.parentElement.nextElementSibling.firstChild
-            subTotal.value = total;
-        })
-        // edit qyt end
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-        function creatdraf()
-        {
-            $.post('/createdraf', $('form').serialize())
+            $.post('/index', {}, function(data){
+                $('#page').html(data)
+            })
         }
 
+        // add drafProdut
+        function store(product)
+        {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            }); 
+
+            // $.post('/store', {pr})
+            $.ajax({
+                type: 'post',
+                url: '/store',
+                data: product,
+                dataType: 'json',
+            });
+        }
+
+        function update(id, price, qty, total)
+        {
+            let subTotal = parseInt(price) * parseInt(qty);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            }); 
+            $.ajax({
+                type: 'post',
+                url: '/update/' + id,
+                data: {id : id, qty : qty, subTotal: subTotal},
+                success: function(){
+                    index()
+                }
+            })
+        }
+
+        //  delete drafProduct
+        function destroy(id){
+            $.post('/destroy/' + id, {}, function(){
+                index()
+            });
+        }
+        
+        // truncate drafProduct
         function deletedraf()
         {
             // $.post('/deletedraf');
