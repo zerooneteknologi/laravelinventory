@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DrafProduct;
+use App\Models\Company;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Suplayer;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -51,6 +52,7 @@ class PurchaseController extends Controller
         $purchase = Purchase::insertGetId([
             'purchaseNo' => $request->purchaseNo,
             'date' => now(),
+            'suplayerId' => $request->suplayerId,
             'payTotal' => $request->payTotal
         ]);
 
@@ -62,7 +64,8 @@ class PurchaseController extends Controller
                 'subTotal' => $request->subTotal[$key]
             ]);
         }
-        return redirect('/purchase');
+
+        return redirect()->route('printPO', ['id' => $purchase]);
     }
 
     /**
@@ -75,31 +78,9 @@ class PurchaseController extends Controller
     {
         return view('warehouse.po.show', [
             'purchase' => $purchase,
-            'orders' => Order::where('purchaseId', $purchase->id)->get()
+            'orders' => Order::where('purchaseId', $purchase->id)->get(),
+            // 'companies' => Company::all()
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Purchase  $purchase
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Purchase $purchase)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Purchase  $purchase
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Purchase $purchase)
-    {
-        //
     }
 
     public function checksuplayer(Request $request)
@@ -109,14 +90,25 @@ class PurchaseController extends Controller
         ]);
     }
 
+    public function getPurchase()
+    {
+        return response()->json([
+            'data'
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Purchase $purchase)
+    public function printPO($id)
     {
-        //
+        return view('warehouse.po.invoice', [
+            'purchasies' => Purchase::where('id', $id)->get(),
+            'orders' => Order::where('purchaseId', $id)->get(),
+            'companies' => Company::all()
+        ]);
     }
 }

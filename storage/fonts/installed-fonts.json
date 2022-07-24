@@ -1,0 +1,18 @@
+{
+    "pct": {
+        "normal": "pct_normal_9092317f416573de1bedca6b5bb065c6"
+    },
+    "feather": {
+        "normal": "feather_normal_26890910c2b756b85ba6f1a55fb7853a"
+    },
+    "font awesome 5 brands": {
+        "normal": "font_awesome_5_brands_normal_0faa5fed66ff6dce89ab41417d400335"
+    },
+    "font awesome 5 free": {
+        "normal": "D:\\laragon\\www\\laravelinventory\\storage\\fonts\/font_awesome_5_free_normal_13c7d1d6d0c78abb6bd4aacd81f3a4fc",
+        "900": "font_awesome_5_free_900_32d90c71b1f23466ebc1064c57ef204a"
+    },
+    "flaticon": {
+        "normal": "flaticon_normal_d21fea426a586a72dcb09cc0a1eb2c3b"
+    }
+}

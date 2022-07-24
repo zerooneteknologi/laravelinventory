@@ -130,7 +130,6 @@
                 }
             }); 
 
-            // $.post('/store', {pr})
             $.ajax({
                 type: 'post',
                 url: '/store',
@@ -168,9 +167,7 @@
         // truncate drafProduct
         function deletedraf()
         {
-            // $.post('/deletedraf');
             $.post('/deletedraf', $('form').serialize())
-            
         }
 
     </script>

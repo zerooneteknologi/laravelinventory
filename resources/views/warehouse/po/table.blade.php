@@ -14,7 +14,7 @@
             @foreach ($drafProducts as $drafProduct)
                 <tr>
                     <td>
-                        <input name="productId[]" id="productId" type="text" class="form-control-plaintext" value="{{ $drafProduct->productId}}">
+                        <input name="productId[]" id="productId" type="hidden" class="form-control-plaintext" value="{{ $drafProduct->productId}}">
                         <input name="productCode[]" id="productCode" type="text" class="form-control-plaintext" value="{{ $drafProduct->productCode}}">
                     </td>
                     <td><input name="productName[]" id="productName" type="text" class="form-control-plaintext" value="{{ $drafProduct->productName}}"></td>

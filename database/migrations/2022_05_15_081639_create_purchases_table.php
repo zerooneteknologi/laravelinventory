@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('purchaseNo');
             $table->date('date');
+            $table->integer('suplayerId');
             $table->integer('payTotal')->nullable();
             $table->enum('status', ['onProses', 'Succes'])->default('onProses');
             $table->timestamps();

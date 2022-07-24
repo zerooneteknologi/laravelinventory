@@ -44,6 +44,10 @@
                                     <td>{{ $purchase->date}}</td>
                                 </tr>
                                 <tr>
+                                    <th>Suplayer</th>
+                                    <td>{{ $purchase->suplayer->name}}</td>
+                                </tr>
+                                <tr>
                                     <th>Total Pembelian</th>
                                     <td>Rp. {{ number_format($purchase->payTotal, 0)}}</td>
                                 </tr>

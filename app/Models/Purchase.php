@@ -10,4 +10,9 @@ class Purchase extends Model
     use HasFactory;
 
     protected $guarded = [''];
+
+    public function suplayer()
+    {
+        return $this->belongsTo(Suplayer::class, 'suplayerId');
+    }
 }
