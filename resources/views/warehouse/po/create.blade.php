@@ -93,7 +93,7 @@
                                 productId : dat.id,
                                 productCode : dat.productCode,
                                 productName : dat.productName,
-                                sellingPrice : dat.sellingPrice,
+                                purchasePrice : dat.purchasePrice,
                                 qty : 0,
                                 subTotal : 0
                             }

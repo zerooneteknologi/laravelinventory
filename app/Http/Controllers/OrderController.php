@@ -32,7 +32,7 @@ class OrderController extends Controller
             'productId' => $request->productId,
             'productCode' => $request->productCode,
             'productName' => $request->productName,
-            'price' => $request->sellingPrice,
+            'price' => $request->purchasePrice,
             'qty' => $request->qty,
             'total' => $request->subTotal
         ]);

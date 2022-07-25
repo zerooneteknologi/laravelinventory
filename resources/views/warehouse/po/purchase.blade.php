@@ -31,7 +31,7 @@
                     <h5>Tabel PO</h5>
                     <span class="d-block m-t-5">Tabel Daftar PO</span>
                 </div>
-                <a href="/purchase/create" class="btn btn-success mb-3 float-right"><i class="feather icon-plus-square"> Buat PO Baru</i></a>
+                <a href="/purchase/create" class="btn btn-primary mb-3 float-right"><i class="feather icon-plus-square"> Buat PO Baru</i></a>
             </div>
             <div class="card-body table-border-style">
                 <div class="table-responsive">
@@ -53,10 +53,21 @@
                                     <td>{{ $purchase->purchaseNo}}</td>
                                     <td>{{ $purchase->date}}</td>
                                     <td>Rp. {{ number_format($purchase->payTotal,0) }}</td>
-                                    <td>{{ $purchase->status}}</td>
+                                    <td>
+                                        @if ($purchase->status == 'onProses')
+                                        <label class="badge badge-warning">{{ $purchase->status}}</label>
+                                        @else
+                                        <label class="badge badge-success">{{ $purchase->status}}</label>
+                                        @endif
+                                    </td>
                                     <td>
                                         <a data-toggle="tooltip" data-placement="top" title="detail" class="badge badge-info" href="/purchase/{{$purchase->id}}"><i class="feather icon-eye"></i></a>
-                                        <a data-toggle="tooltip" data-placement="top" title="cetak" class="badge badge-secondary" href="#"><i class="feather icon-printer"></i></a>
+                                        @if ($purchase->status == 'onProses')
+                                            <a data-toggle="tooltip" data-placement="top" title="cetak" class="badge badge-secondary" href="/printPO/{{$purchase->id}}"><i class="feather icon-printer"></i></a>
+                                        @endif
+                                        @if ($purchase->status == 'onProses')
+                                            <a data-toggle="tooltip" data-placement="top" title="konfirmasi" class="badge badge-success" href="/purchase/{{ $purchase->id }}/edit"><i class="feather icon-check"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->string('purchaseNo');
+            $table->string('purchaseNo')->unique();
             $table->date('date');
             $table->integer('suplayerId');
             $table->integer('payTotal')->nullable();

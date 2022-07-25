@@ -79,8 +79,55 @@ class PurchaseController extends Controller
         return view('warehouse.po.show', [
             'purchase' => $purchase,
             'orders' => Order::where('purchaseId', $purchase->id)->get(),
-            // 'companies' => Company::all()
         ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Purchase $purchase
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Purchase $purchase)
+    {
+        return view('warehouse.po.edit', [
+            'purchase' => $purchase,
+            'orders' => Order::where('purchaseId', $purchase->id)->get(),
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Purchase $purchase
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Purchase $purchase)
+    {
+        foreach ($request->orderId as $key => $order) {
+            Order::where('id', $order)->update([
+                'qty' => $request->qty[$key],
+                'subTotal' => $request->qty[$key] * $request->purchasePrice[$key],
+            ]);
+        };
+
+        foreach ($request->productId as $key => $product) {
+            $qtys = Product::where('id', $product)->get('stock');
+            foreach ($qtys as $qty) {
+                Product::where('id', $product)->update([
+                    'stock' => $qty->stock + $request->qty[$key],
+                    'purchasePrice' => $request->purchasePrice[$key]
+                ]);
+            }
+        };
+
+        Purchase::where('id', $purchase->id)->update([
+            'payTotal' => Order::where('purchaseId', $purchase->id)->sum('subTotal'),
+            'status' => 'Succes'
+        ]);
+
+        return redirect('/purchase');
     }
 
     public function checksuplayer(Request $request)
@@ -98,10 +145,7 @@ class PurchaseController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Purchase  $purchase
-     * @return \Illuminate\Http\Response
+     * print PO
      */
     public function printPO($id)
     {
@@ -109,6 +153,26 @@ class PurchaseController extends Controller
             'purchasies' => Purchase::where('id', $id)->get(),
             'orders' => Order::where('purchaseId', $id)->get(),
             'companies' => Company::all()
+        ]);
+    }
+
+    /**
+     * get data Order
+     */
+    public function getOrder(Request $request)
+    {
+        return response()->json([
+            'order' => Order::where('purchaseId', $request->id)->get()
+        ]);
+    }
+
+    /**
+     * get data product
+     */
+    public function getProduct(Request $request)
+    {
+        return response()->json([
+            'product' => Product::where('id', $request->id)->get()
         ]);
     }
 }
