@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
@@ -39,8 +40,8 @@ Route::resource('/company', CompanyController::class);
 Route::resource('/purchase', PurchaseController::class);
 Route::get('/checksuplayer', [PurchaseController::class, 'checksuplayer']);
 Route::get('/printPO/{id}', [PurchaseController::class, 'printPO'])->name('printPO');
-Route::get('/getOrder', [PurchaseController::class, 'getOrder']);
-Route::get('/getProduct', [PurchaseController::class, 'getProduct']);
+
+Route::resource('/invoice', InvoiceController::class);
 
 Route::post('/index', [OrderController::class, 'index']);
 Route::post('/store', [OrderController::class, 'store']);

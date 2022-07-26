@@ -5,9 +5,12 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Customer;
+use App\Models\Invoice;
 use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Purchase;
+use App\Models\Sale;
 use App\Models\Suplayer;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -69,5 +72,18 @@ class DatabaseSeeder extends Seeder
 
         Purchase::factory(5)->create();
         Order::factory(10)->create();
+
+        Invoice::factory(5)->create();
+        Sale::factory(10)->create();
+
+        Payment::create([
+            'payment' => 'cash'
+        ]);
+        Payment::create([
+            'payment' => 'tranfer'
+        ]);
+        Payment::create([
+            'payment' => 'credit'
+        ]);
     }
 }
