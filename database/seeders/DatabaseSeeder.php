@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Company;
+use App\Models\Credit;
 use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\Order;
@@ -85,5 +86,7 @@ class DatabaseSeeder extends Seeder
         Payment::create([
             'payment' => 'credit'
         ]);
+
+        Credit::factory(5)->create();
     }
 }

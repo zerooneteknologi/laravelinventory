@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CreditController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\OrderController;
@@ -44,6 +45,9 @@ Route::get('/printPO/{id}', [PurchaseController::class, 'printPO'])->name('print
 Route::resource('/invoice', InvoiceController::class);
 Route::get('/getMember/{customer:customerNo}', [InvoiceController::class, 'getMember']);
 Route::get('/getProduct/{product:productCode}', [InvoiceController::class, 'getProduct']);
+Route::get('/printInvoice/{id}', [InvoiceController::class, 'printInvoice'])->name('printInvoice');
+
+Route::resource('/credit', CreditController::class);
 
 Route::post('/index', [OrderController::class, 'index']);
 Route::post('/store', [OrderController::class, 'store']);

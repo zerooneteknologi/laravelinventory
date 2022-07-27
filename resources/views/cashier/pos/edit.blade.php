@@ -50,6 +50,7 @@
                                     <tr>
                                         <th>Member</th>
                                         <td>{{$invoice->customer->customerName}}</td>
+                                        <input name="memberId" type="hidden" value="{{ $invoice->customer->id}}">
                                     </tr>
                                 @endif
                             </thead>
@@ -91,12 +92,20 @@
                         <div class="form-group row">
                             <label for="payment" class="col-sm-5 col-form-label col-form-label-sm">Metode Bayar</label>
                             <div class="col-sm-7">
-                                <select name="payment" id="payment" class="form-control form-control-sm">
-                                    <option>Pilih Metode</option>
-                                    @foreach ($payments as $payment)
-                                        <option value="{{$payment->payment}}">{{$payment->payment}}</option>
-                                    @endforeach
-                                </select>
+                                @if ($invoice->memberId <> null)
+                                    <select name="payment" id="payment" class="form-control form-control-sm">
+                                        <option>Pilih Metode</option>
+                                        @foreach ($payments as $payment)
+                                            <option value="{{$payment->payment}}">{{$payment->payment}}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <select name="payment" id="payment" class="form-control form-control-sm">
+                                        <option>Pilih Metode</option>
+                                        <option value="cash">cash</option>
+                                        <option value="Transfer">Transfer</option>
+                                    </select>
+                                @endif
                             </div>
                         </div>
 
@@ -113,12 +122,15 @@
                             <div class="form-group row">
                                 <strong for="discount" class="col-sm-5 col-form-label col-form-label-sm">Potongan (%)</strong>
                                 <div class="col-sm-7">
-                                    <input name="discount" id="discount" type="number" class="form-control form-control-sm">
+                                    <input name="discount" id="discount" value="0" type="number" class="form-control form-control-sm">
                                 </div>
                             </div>
                         @endif
                     </div>
-                    <div id="page"></div>
+                    <div class="col-sm-6">
+                        <div id="page"></div>
+                        <div id="disc"></div>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Buat Pesanan</button>
             </form>
@@ -137,7 +149,7 @@
             let cash = `<div class="form-group row">
                             <strong for="cash" class="col-sm-5 col-form-label col-form-label-sm">Jumlah Bayar (Rp)</strong>
                             <div class="col-sm-7">
-                                <input name="cash" id="cash" type="number" class="form-control form-control-sm">
+                                <input name="cash" id="cash" type="number" onchange="refund()" class="form-control form-control-sm">
                             </div>
                         </div>`
             $('#page').append(cash);
@@ -151,9 +163,15 @@
             $('#page').append(cash);
         } else if ($(this).val() == 'credit') {
             let cash = `<div class="form-group row">
-                            <strong for="creditPay" class="col-sm-5 col-form-label col-form-label-sm">Jumlah Bayar (Rp)</strong>
+                            <strong for="dp" class="col-sm-5 col-form-label col-form-label-sm">Jumlah Bayar (Rp)</strong>
                             <div class="col-sm-7">
-                                <input name="creditPay" id="creditPay" value="credit" type="text" class="form-control form-control-sm">
+                                <input name="dp" id="dp" type="text" onchange="credit()" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <strong for="expired" class="col-sm-5 col-form-label col-form-label-sm">Jumlah Bayar (Rp)</strong>
+                            <div class="col-sm-7">
+                                <input name="expired" id="expired" type="date" class="form-control form-control-sm">
                             </div>
                         </div>`
             $('#page').append(cash);
@@ -161,7 +179,8 @@
     })
 
     // count refund
-    $('#page').change('#cash', function(){
+    function refund()
+    {
         let refund = 0
         @if ($invoice->memberId <> null)
             refund = parseInt($('#cash').val()) - (parseInt($('#pay').val()) -(parseInt($('#pay').val()) * parseInt($('#discount').val()) /100))
@@ -176,11 +195,12 @@
                         </div>
                     </div>`
         $('#page').append(cash);
-    })
+    }
 
     // count paytotal if discount
     $('#discount').change(function()
     {
+        $('#disc').children().remove()
         let pay = parseInt($('#pay').val()) - (parseInt($('#pay').val()) * parseInt($('#discount').val()) /100)
         let payTotal = `<div class="form-group row">
                         <strong for="payTotal" class="col-sm-5 col-form-label col-form-label-sm">Total Bayar (Rp)</strong>
@@ -188,8 +208,20 @@
                             <input name="payTotal" id="payTotal" value="${Math.round(pay)}" type="number" class="form-control form-control-sm">
                         </div>
                     </div>`
-        $('#page').append(payTotal);
+        $('#disc').append(payTotal);
     })
+
+    // credit methode
+    function credit(){
+        let dp = (parseInt($('#pay').val()) -(parseInt($('#pay').val()) * parseInt($('#discount').val()) /100)) - $('#dp').val()
+        let credit = `<div class="form-group row">
+                        <strong for="credit" class="col-sm-5 col-form-label col-form-label-sm">Utang (Rp)</strong>
+                        <div class="col-sm-7">
+                            <input name="credit" id="credit" value="${Math.round(dp)}" type="number" class="form-control form-control-sm">
+                        </div>
+                    </div>`
+        $('#page').append(credit);
+    }
 </script>
 @endpush
 @endsection

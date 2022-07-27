@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
+use App\Models\Credit;
 use App\Models\Customer;
 use App\Models\DrafProduct;
 use App\Models\Invoice;
@@ -110,6 +112,8 @@ class InvoiceController extends Controller
     {
         if ($invoice->memberId <> null) {
             if ($request->payment == 'cash') {
+
+                // methode cash
                 Invoice::where('id', $invoice->id)->update([
                     'payment' => $request->payment,
                     'pay' => $request->pay,
@@ -119,9 +123,28 @@ class InvoiceController extends Controller
                     'refund' => $request->refund
                 ]);
             } elseif ($request->payment == 'tranfer') {
+
+                // methode transfer
                 return $request->recNo;
             } elseif ($request->payment == 'credit') {
-                return $request->creditPay;
+
+                // methode credit
+                Invoice::where('id', $invoice->id)->update([
+                    'payment' => $request->payment,
+                    'pay' => $request->pay,
+                    'discount' => $request->discount,
+                    'payTotal' => $request->payTotal,
+                    'cash' => $request->cash,
+                    'refund' => $request->refund
+                ]);
+
+                Credit::create([
+                    'memberId' => $request->memberId,
+                    'invoiceId' => $invoice->id,
+                    'date' => now(),
+                    'credit' => $request->credit,
+                    'expired' => $request->expired
+                ]);
             }
         } else {
             if ($request->payment == 'cash') {
@@ -134,13 +157,10 @@ class InvoiceController extends Controller
                 ]);
             } elseif ($request->payment == 'tranfer') {
                 return $request->recNo;
-            } elseif ($request->payment == 'credit') {
-                return $request->creditPay;
             }
         }
 
-
-        return redirect('/invoice');
+        return redirect()->route('printInvoice', ['id' => $invoice->id]);
     }
 
     /**
@@ -175,6 +195,16 @@ class InvoiceController extends Controller
     {
         return response()->json([
             'product' => $product
+        ]);
+    }
+
+    public function printInvoice($id)
+    {
+        return view('cashier.pos.invoice', [
+            'invoices' => Invoice::where('id', $id)->get(),
+            'sales' => Sale::where('invoiceId', $id)->get(),
+            'creidts' => Credit::where('invoiceId', $id)->get(),
+            'companies' => Company::all()
         ]);
     }
 }

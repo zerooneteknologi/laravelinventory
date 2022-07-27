@@ -48,6 +48,9 @@
                 <li class="nav-item {{ Request::is('invoice*') ? 'active' : ''}}">
                     <a href="/invoice" class="nav-link "><span class="pcoded-micon"><i class="feather icon-shopping-bag"></i></i></span><span class="pcoded-mtext">Pemelian</span></a>
                 </li>
+                <li class="nav-item {{ Request::is('credit*') ? 'active' : ''}}">
+                    <a href="/credit" class="nav-link "><span class="pcoded-micon"><i class="feather icon-shopping-bag"></i></i></span><span class="pcoded-mtext">Pemelian</span></a>
+                </li>
                 <li class="nav-item {{ Request::is('setting*') ? 'active' : ''}}">
                     <a href="/setting" class="nav-link "><span class="pcoded-micon"><i class="feather icon-settings"></i></i></span><span class="pcoded-mtext">Pengaturan</span></a>
                 </li>
