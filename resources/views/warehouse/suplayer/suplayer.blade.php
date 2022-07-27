@@ -77,7 +77,6 @@
                                             <i class="feather icon-x-circle"></i>
                                         </button>
                                     </form>
-                                    </a>
                                 </td>
                             </tr>
                             @endforeach

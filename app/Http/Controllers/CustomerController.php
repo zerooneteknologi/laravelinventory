@@ -10,7 +10,7 @@ class CustomerController extends Controller
     // autorization
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('isCashier');
     }
     /**
      * Display a listing of the resource.
