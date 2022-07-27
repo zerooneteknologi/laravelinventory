@@ -19,7 +19,7 @@ class InvoiceFactory extends Factory
     {
         return [
             'memberId' => mt_rand(1, 5),
-            'paymentId' => mt_rand(1, 3),
+            'payment' => 'cash',
             'invoiceNo' => Str::random(4),
             'date' => now(),
             'payTotal' => $this->faker->randomNumber(4, true)

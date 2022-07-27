@@ -42,6 +42,8 @@ Route::get('/checksuplayer', [PurchaseController::class, 'checksuplayer']);
 Route::get('/printPO/{id}', [PurchaseController::class, 'printPO'])->name('printPO');
 
 Route::resource('/invoice', InvoiceController::class);
+Route::get('/getMember/{customer:customerNo}', [InvoiceController::class, 'getMember']);
+Route::get('/getProduct/{product:productCode}', [InvoiceController::class, 'getProduct']);
 
 Route::post('/index', [OrderController::class, 'index']);
 Route::post('/store', [OrderController::class, 'store']);

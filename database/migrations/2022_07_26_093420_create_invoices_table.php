@@ -16,10 +16,14 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('memberId')->nullable();
-            $table->foreignId('paymentId')->nullable();
+            $table->string('payment')->nullable();
             $table->string('invoiceNo')->unique();
             $table->date('date');
+            $table->integer('pay')->nullable();
+            $table->integer('discount')->nullable();
             $table->integer('payTotal')->nullable();
+            $table->integer('cash')->nullable();
+            $table->integer('refund')->nullable();
             $table->timestamps();
         });
     }
