@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('purchases', function (Blueprint $table) {
+        Schema::create('draf_products', function (Blueprint $table) {
             $table->id();
-            $table->string('purchaseNo')->unique();
-            $table->date('date');
-            $table->integer('suplayerId');
-            $table->integer('payTotal')->nullable();
-            $table->enum('status', ['onProses', 'Succes'])->default('onProses');
+            $table->string('productId');
+            $table->string('productCode');
+            $table->string('productName');
+            $table->integer('price');
+            $table->integer('qty');
+            $table->integer('total');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchases');
+        Schema::dropIfExists('draf_products');
     }
 };

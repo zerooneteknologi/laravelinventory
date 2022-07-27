@@ -13,13 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('purchases', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('purchaseNo')->unique();
+            $table->foreignId('memberId')->nullable();
+            $table->string('payment')->nullable();
+            $table->string('invoiceNo')->unique();
             $table->date('date');
-            $table->integer('suplayerId');
+            $table->integer('pay')->nullable();
+            $table->integer('discount')->nullable();
             $table->integer('payTotal')->nullable();
-            $table->enum('status', ['onProses', 'Succes'])->default('onProses');
+            $table->integer('cash')->nullable();
+            $table->integer('refund')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchases');
+        Schema::dropIfExists('invoices');
     }
 };

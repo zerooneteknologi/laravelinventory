@@ -14,7 +14,7 @@
                     </div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ __('dashboard') }}"><i class="feather icon-home"></i></a></li>
-                        <li class="breadcrumb-item"><a href="{{ __('suplayer') }}">{{ __('suplayer') }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ __('/suplayer') }}">{{ __('suplayer') }}</a></li>
                     </ul>
                 </div>
             </div>

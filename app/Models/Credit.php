@@ -5,14 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Purchase extends Model
+class Credit extends Model
 {
     use HasFactory;
 
     protected $guarded = [''];
-
-    public function suplayer()
-    {
-        return $this->belongsTo(Suplayer::class, 'suplayerId');
-    }
 }

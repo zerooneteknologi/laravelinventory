@@ -4,8 +4,14 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Company;
+use App\Models\Credit;
 use App\Models\Customer;
+use App\Models\Invoice;
+use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Product;
+use App\Models\Purchase;
+use App\Models\Sale;
 use App\Models\Suplayer;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,18 +29,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // User::factory(5)->create();
-
         User::create([
             'name' => 'owner',
-            'email' => 'onwer@gmail.com',
-            'email_verified_at' => now(),
-            'role' => 'owner',
-            'password' => Hash::make('password'),
-            'remember_token' => Str::random(10)
-        ]);
-        User::create([
-            'name' => 'cashier',
-            'email' => 'cashier@gmail.com',
+            'email' => 'owner@gmail.com',
             'email_verified_at' => now(),
             'role' => 'owner',
             'password' => Hash::make('password'),
@@ -44,7 +41,15 @@ class DatabaseSeeder extends Seeder
             'name' => 'warehouse',
             'email' => 'warehouse@gmail.com',
             'email_verified_at' => now(),
-            'role' => 'owner',
+            'role' => 'warehouse',
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10)
+        ]);
+        User::create([
+            'name' => 'marketing',
+            'email' => 'marketing@gmail.com',
+            'email_verified_at' => now(),
+            'role' => 'marketing',
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10)
         ]);
@@ -66,5 +71,23 @@ class DatabaseSeeder extends Seeder
         Category::create([
             'categoriName' => 'aksesoris'
         ]);
+
+        Purchase::factory(5)->create();
+        Order::factory(10)->create();
+
+        Invoice::factory(5)->create();
+        Sale::factory(10)->create();
+
+        Payment::create([
+            'payment' => 'cash'
+        ]);
+        Payment::create([
+            'payment' => 'tranfer'
+        ]);
+        Payment::create([
+            'payment' => 'credit'
+        ]);
+
+        Credit::factory(5)->create();
     }
 }
