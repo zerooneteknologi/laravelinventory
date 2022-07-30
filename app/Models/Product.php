@@ -21,4 +21,14 @@ class Product extends Model
     {
         return $this->belongsTo(Suplayer::class, 'suplayerId');
     }
+
+    public function sale()
+    {
+        return $this->hasMany(Sale::class, 'productId');
+    }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class, 'productId');
+    }
 }
