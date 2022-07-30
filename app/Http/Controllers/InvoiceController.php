@@ -165,17 +165,6 @@ class InvoiceController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Invoice $invoice)
-    {
-        //
-    }
-
-    /**
      * get member json
      * @param \App\Models\Customer
      * * @return \Illuminate\Http\Response
