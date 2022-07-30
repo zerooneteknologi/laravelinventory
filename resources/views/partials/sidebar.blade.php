@@ -65,24 +65,24 @@
                         {{-- autorizer warehouse--}}
                         @can('isWarehous')
                         <li class="{{ Request::is('purchase*') ? 'active' : ''}}">
-                            <a href="/purchase"><span>Pemelian</span></a>
+                            <a href="/purchase"><span>Transaksi Pemelian</span></a>
                         </li>
                         @endcan
 
                         {{-- autorizer cashier--}}
                         @can('isCashier')
                             <li class="{{ Request::is('invoice*') ? 'active' : ''}}">
-                                <a href="/invoice"><span></span><span class="pcoded-mtext">Penjualan</span></a>
+                                <a href="/invoice"><span></span><span class="pcoded-mtext">Transaksi Penjualan</span></a>
                             </li>
                         @endcan
                     </ul>
                 </li>  
             
                 <li class="nav-item pcoded-hasmenu ">
-                    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Page layouts</span></a>
+                    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Laporan</span></a>
                     <ul class="pcoded-submenu">
-                        <li><a href="layout-vertical.html" target="_blank">Vertical</a></li>
-                        <li><a href="layout-horizontal.html" target="_blank">Horizontal</a></li>
+                        <li><a href="/income">Laporan Pendapatan</a></li>
+                        <li><a href="/reportproduct">Laporan Produk</a></li>
                     </ul>
                 </li>
             </ul>

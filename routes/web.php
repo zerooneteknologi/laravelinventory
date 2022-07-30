@@ -58,6 +58,10 @@ Route::post('/update/{id}', [OrderController::class, 'update']);
 Route::post('/destroy/{id}', [OrderController::class, 'destroy']);
 Route::post('/deletedraf', [OrderController::class, 'deletedraf']);
 
-Route::post('/income', [ReportController::class, 'income']);
+Route::get('/income', [ReportController::class, 'income']);
+Route::get('/filter/{start}/{end}', [ReportController::class, 'filter']);
+Route::get('/report/print', [ReportController::class, 'print']);
+
+Route::get('/reportproduct', [ReportController::class, 'dataProduct']);
 
 Route::get('/setting', [SettingController::class, 'index']);
