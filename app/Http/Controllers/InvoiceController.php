@@ -143,6 +143,7 @@ class InvoiceController extends Controller
                     'invoiceId' => $invoice->id,
                     'date' => now(),
                     'credit' => $request->credit,
+                    'debt' => $request->credit,
                     'expired' => $request->expired
                 ]);
             }

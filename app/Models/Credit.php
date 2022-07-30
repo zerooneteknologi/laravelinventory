@@ -10,4 +10,9 @@ class Credit extends Model
     use HasFactory;
 
     protected $guarded = [''];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'memberId');
+    }
 }
