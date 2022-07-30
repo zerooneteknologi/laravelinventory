@@ -26,6 +26,13 @@
 	<!-- [ stiped-table ] start -->
     <div class="col-xl-12">
         <div class="card">
+            {{-- alert succes terima po --}}
+            @if (session()->has('success'))    
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                {{ session('success')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            @endif
             <div class="card-header">
                 <div class="float-left">
                     <h5>Tabel PO</h5>

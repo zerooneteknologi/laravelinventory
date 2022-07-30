@@ -44,6 +44,18 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+        foreach ($request->productId as $key => $productId) {
+            $qtys = Product::where('id', $productId)->get('stock');
+            foreach ($qtys as $qty) {
+                if ($qty->stock - $request->qty[$key] <= 0) {
+                    return redirect('/invoice')->with('failed', 'product tidak mencukupi');
+                }
+                Product::where('id', $productId)->update([
+                    'stock' => $qty->stock - $request->qty[$key],
+                ]);
+            }
+        }
+
         if ($request->memberId == null) {
             $invoice = Invoice::insertGetId([
                 'invoiceNo' => $request->invoiceNo,

@@ -78,8 +78,8 @@
                         </div>
                         <div class="form-group">
                             <label for="categoryId">pilih kategori</label>
-                            <select required name="categoryId" class="form-control" id="categoryId">
-                                <option >pilih kategory</option>
+                            <select required name="categoryId" class="form-control" id="categoryId" >
+                                <option value="">pilih kategory</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id}}">{{ $category->categoriName}}</option>
                                 @endforeach
@@ -88,9 +88,9 @@
                         <div class="form-group">
                             <label for="suplayerId">pilih suplayer</label>
                             <select required name="suplayerId" class="form-control" id="suplayerId">
-                                <option >Pilih Suplayer</option>
+                                <option value="">Pilih Suplayer</option>
                                 @foreach ($suplayers as $suplayer)
-                                    <option value="{{ $suplayer->id}}">{{ $suplayer->name}}</option>
+                                    <option value="{{ $suplayer->id}}" @checked( old('suplayerId') == $suplayer)>{{ $suplayer->name}}</option>
                                 @endforeach
                             </select>
                         </div>

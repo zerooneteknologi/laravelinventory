@@ -57,7 +57,7 @@
                     <!-- [ product table ] end -->
                     <div class="form-group row">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn  btn-primary">Buat PO</button>
+                            <button onclick="deletedraf()" type="submit" class="btn  btn-primary">Buat PO</button>
                         </div>
                     </div>
                 </form>
@@ -97,8 +97,8 @@
                                 qty : 0,
                                 subTotal : 0
                             }
-                            index()
                             store(product);
+                            index()
                         })
                     }) 
                 }

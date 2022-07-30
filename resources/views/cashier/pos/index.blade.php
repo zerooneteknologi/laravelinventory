@@ -26,6 +26,20 @@
 	<!-- [ sample-page ] start -->
 	<div class="col-sm-12">
 		<div class="card">
+            {{-- notif gagal --}}
+            @if (session()->has('failed'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('failed')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            @endif
+
+            @if (session()->has('success'))    
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                {{ session('success')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            @endif
             <div class="card-header">
                 <div class="float-left">
                     <h5>Tabel Penjualan</h5>

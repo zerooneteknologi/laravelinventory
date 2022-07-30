@@ -127,7 +127,7 @@ class PurchaseController extends Controller
             'status' => 'Succes'
         ]);
 
-        return redirect('/purchase');
+        return redirect('/purchase')->with('success', 'konfirmasi terima barang berhasil');
     }
 
     public function checksuplayer(Request $request)
