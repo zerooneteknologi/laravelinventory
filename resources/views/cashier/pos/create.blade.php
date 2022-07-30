@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'PO')
+@section('title', 'Penjualan')
 
 @section('content')
 <div class="pcoded-content">
@@ -14,7 +14,7 @@
 				</div>
 				<ul class="breadcrumb">
 					<li class="breadcrumb-item"><a href="{{__('/dashboard')}}"><i class="feather icon-home"></i></a></li>
-					<li class="breadcrumb-item"><a href="{{__('create')}}">Buat PO</a></li>
+					<li class="breadcrumb-item"><a href="{{__('create')}}">Buat Transaksi</a></li>
 				</ul>
 			</div>
 		</div>

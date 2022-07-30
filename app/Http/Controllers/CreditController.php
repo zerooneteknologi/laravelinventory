@@ -59,7 +59,9 @@ class CreditController extends Controller
      */
     public function edit(Credit $credit)
     {
-        //
+        return view('cashier.credit.edit', [
+            'credit' => $credit
+        ]);
     }
 
     /**
@@ -71,7 +73,12 @@ class CreditController extends Controller
      */
     public function update(Request $request, Credit $credit)
     {
-        //
+        Credit::where('id', $credit->id)->update([
+            'pay' => $request->pay,
+            'debt' => $request->cash
+        ]);
+
+        return redirect('/customer/' . $credit->customer->id)->with('success', 'kredit berhasil dibayar');
     }
 
     /**

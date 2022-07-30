@@ -49,7 +49,7 @@ Route::get('/getMember/{customer:customerNo}', [InvoiceController::class, 'getMe
 Route::get('/getProduct/{product:productCode}', [InvoiceController::class, 'getProduct']);
 Route::get('/printInvoice/{id}', [InvoiceController::class, 'printInvoice'])->name('printInvoice');
 
-Route::resource('/credit', CreditController::class);
+Route::resource('/credit', CreditController::class)->only(['edit', 'update']);
 
 Route::post('/index', [OrderController::class, 'index']);
 Route::post('/store', [OrderController::class, 'store']);

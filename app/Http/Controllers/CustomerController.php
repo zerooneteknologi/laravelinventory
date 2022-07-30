@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Credit;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -63,7 +64,9 @@ class CustomerController extends Controller
     public function show(Customer $customer)
     {
         return view('cashier.customer.show', [
-            'customer' => $customer
+            'customer' => $customer,
+            'credits' => Credit::where('memberId', $customer->id)->get(),
+            'sum' => Credit::where('memberId', $customer->id)->sum('debt')
         ]);
     }
 

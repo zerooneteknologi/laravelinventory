@@ -165,13 +165,13 @@
             let cash = `<div class="form-group row">
                             <strong for="dp" class="col-sm-5 col-form-label col-form-label-sm">Jumlah Bayar (Rp)</strong>
                             <div class="col-sm-7">
-                                <input name="dp" id="dp" type="text" onchange="credit()" class="form-control form-control-sm">
+                                <input name="dp" id="dp" type="number" onchange="credit()" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="form-group row">
                             <strong for="expired" class="col-sm-5 col-form-label col-form-label-sm">Jumlah Bayar (Rp)</strong>
                             <div class="col-sm-7">
-                                <input name="expired" id="expired" type="date" class="form-control form-control-sm">
+                                <input name="expired" id="expired" type="date" value="{{ date('Y-m-d', time() + 2592000)}}" class="form-control form-control-sm">
                             </div>
                         </div>`
             $('#page').append(cash);

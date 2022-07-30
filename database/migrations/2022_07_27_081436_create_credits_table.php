@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreignId('invoiceId');
             $table->date('date');
             $table->integer('credit');
+            $table->integer('pay')->nullable();
+            $table->integer('debt')->nullable();
             $table->date('expired');
             $table->timestamps();
         });
