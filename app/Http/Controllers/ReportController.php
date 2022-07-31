@@ -79,13 +79,16 @@ class ReportController extends Controller
      */
     public function product()
     {
-        return view('report.product.index');
+        return view('report.product.index', [
+            'products' => Product::all()
+        ]);
     }
 
-    public function dataProduct()
+    public function productprint()
     {
-        $product = Product::all();
-
-        return $product;
+        return view('report.product.report', [
+            'companies' => Company::all(),
+            'products' => Product::all()
+        ]);
     }
 }

@@ -62,6 +62,7 @@ Route::get('/income', [ReportController::class, 'income']);
 Route::get('/filter/{start}/{end}', [ReportController::class, 'filter']);
 Route::get('/report/print', [ReportController::class, 'print']);
 
-Route::get('/reportproduct', [ReportController::class, 'dataProduct']);
+Route::get('/reportproduct', [ReportController::class, 'product']);
+Route::get('/productprint', [ReportController::class, 'productprint']);
 
 Route::get('/setting', [SettingController::class, 'index']);
