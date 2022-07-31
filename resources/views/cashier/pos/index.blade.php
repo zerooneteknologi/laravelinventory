@@ -34,12 +34,6 @@
             </div>
             @endif
 
-            @if (session()->has('success'))    
-            <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                {{ session('success')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            @endif
             <div class="card-header">
                 <div class="float-left">
                     <h5>Tabel Penjualan</h5>
@@ -49,7 +43,7 @@
             </div>
             <div class="card-body table-border-style">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="table_id">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -81,4 +75,11 @@
 </div>
 <!-- [ Main Content ] end -->
 </div>
+@push('script')	
+	<script>
+		$(document).ready( function () {
+    		$('#table_id').DataTable();
+		} );
+	</script>
+@endpush
 @endsection

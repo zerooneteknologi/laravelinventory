@@ -12,3 +12,6 @@
 <!-- vendor css -->
 <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
 <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+
+<!-- datatable css -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">

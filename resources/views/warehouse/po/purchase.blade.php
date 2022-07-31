@@ -42,7 +42,7 @@
             </div>
             <div class="card-body table-border-style">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="table_id">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -88,4 +88,11 @@
 </div>
 <!-- [ Main Content ] end -->
 </div>
+@push('script')	
+	<script>
+		$(document).ready( function () {
+    		$('#table_id').DataTable();
+		} );
+	</script>
+@endpush
 @endsection

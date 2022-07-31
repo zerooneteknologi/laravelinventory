@@ -2,6 +2,7 @@
     <script>
         $(document).ready(function(){
             filter()
+            $('#table_id').DataTable();
             // console.log('ok');
         })
 

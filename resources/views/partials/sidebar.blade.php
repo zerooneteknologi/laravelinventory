@@ -49,9 +49,6 @@
                     <li class="nav-item {{ Request::is('customer*') ? 'active' : ''}}">
                         <a href="/customer" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></i></span><span class="pcoded-mtext">Member</span></a>
                     </li>
-                    <li class="nav-item {{ Request::is('credit*') ? 'active' : ''}}">
-                        <a href="/credit" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></i></span><span class="pcoded-mtext">Kredit</span></a>
-                    </li>
                 @endcan
 
                 <li class="nav-item pcoded-menu-caption">
