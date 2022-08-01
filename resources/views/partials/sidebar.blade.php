@@ -62,7 +62,7 @@
                         {{-- autorizer warehouse--}}
                         @can('isWarehous')
                         <li class="{{ Request::is('purchase*') ? 'active' : ''}}">
-                            <a href="/purchase"><span>Transaksi Pemelian</span></a>
+                            <a href="/purchase"><span>Transaksi Pembelian</span></a>
                         </li>
                         @endcan
 

@@ -22,7 +22,7 @@ class SuplayerController extends Controller
     public function index()
     {
         return view('warehouse.suplayer.suplayer', [
-            'suplayers' => Suplayer::all()
+            'suplayers' => Suplayer::all(),
         ]);
     }
 
@@ -49,12 +49,15 @@ class SuplayerController extends Controller
             'address' => 'required|max:255',
             'email' => 'required|max:255|email',
             'phoneNumber' => 'required|max:30',
-            'website' => 'required'
+            'website' => 'nullable',
         ]);
 
         Suplayer::create($validateData);
 
-        return redirect('/suplayer')->with('success', 'Suplayer berhasil ditambahkan');
+        return redirect('/suplayer')->with(
+            'success',
+            'Suplayer berhasil ditambahkan'
+        );
     }
 
     /**
@@ -66,7 +69,7 @@ class SuplayerController extends Controller
     public function show(Suplayer $suplayer)
     {
         return view('warehouse.suplayer.show', [
-            'suplayer' => $suplayer
+            'suplayer' => $suplayer,
         ]);
     }
 
@@ -79,7 +82,7 @@ class SuplayerController extends Controller
     public function edit(Suplayer $suplayer)
     {
         return view('warehouse.suplayer.edit', [
-            'suplayers' => $suplayer
+            'suplayers' => $suplayer,
         ]);
     }
 
@@ -97,12 +100,15 @@ class SuplayerController extends Controller
             'address' => 'required|max:255',
             'email' => 'required|max:255|email',
             'phoneNumber' => 'required|max:20',
-            'website' => 'required'
+            'website' => 'nullable',
         ]);
 
         Suplayer::where('id', $suplayer->id)->update($validateData);
 
-        return redirect('suplayer')->with('success', 'suplayer berhasil diubah!');
+        return redirect('suplayer')->with(
+            'success',
+            'suplayer berhasil diubah!'
+        );
     }
 
     /**

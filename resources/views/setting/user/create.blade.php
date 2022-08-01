@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 <label for="role">level Pengguna</label>
                                 <select required name="role" class="form-control" id="exampleFormControlSelect1">
-                                    <option>pilih level</option>
+                                    <option value="">pilih level</option>
                                     <option value="owner">Pemilik</option>
                                     <option value="warehouse">Staff Gudang</option>
                                     <option value="marketing">Kasir</option>

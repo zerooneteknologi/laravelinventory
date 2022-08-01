@@ -42,8 +42,8 @@
                     <div class="form-group row">
                         <label for="suplayerId" class="col-sm-3 col-form-label">Suplayer</label>
                         <div class="col-sm-9">
-                            <select name="suplayerId" class="form-control" id="suplayerId">
-                                <option>Pilih Suplayer</option>
+                            <select required name="suplayerId" class="form-control" id="suplayerId">
+                                <option value="">Pilih Suplayer</option>
                                 @foreach ($suplayers as $suplayer)
                                     <option value="{{ $suplayer->id}}">{{ $suplayer->name }}</option>
                                 @endforeach

@@ -4,7 +4,7 @@
             <tr>
                 <th width="15%">Kode Produk</th>
                 <th width="25%">Nama Produk</th>
-                <th width="20%">Harga Jual</th>
+                <th width="20%">Harga Beli</th>
                 <th width="15%">qty</th>
                 <th width="20%">Jumlah</th>
                 <th width="5%">#</th>
