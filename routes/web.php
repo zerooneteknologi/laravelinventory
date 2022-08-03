@@ -50,6 +50,11 @@ Route::get('/getMember/{customer:customerNo}', [InvoiceController::class, 'getMe
 Route::get('/getProduct/{product:productCode}', [InvoiceController::class, 'getProduct']);
 Route::get('/printInvoice/{id}', [InvoiceController::class, 'printInvoice'])->name('printInvoice');
 
+Route::get('/modalmember', [InvoiceController::class, 'modalmember']);
+Route::get('/modalproduct', [InvoiceController::class, 'modalproduct']);
+Route::get('/searchmember', [InvoiceController::class, 'searchmember']);
+Route::get('/searchproduct', [InvoiceController::class, 'searchproduct']);
+
 Route::resource('/credit', CreditController::class)->only(['edit', 'update']);
 
 Route::post('/index', [OrderController::class, 'index']);

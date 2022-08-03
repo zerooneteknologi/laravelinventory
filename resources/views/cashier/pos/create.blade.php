@@ -46,7 +46,7 @@
                         <!-- [ member No ] -->
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="floating-label" for="memberNo">No Member</label>
+                                <label class="floating-label" for="memberNo">No Member <i class="feather icon-search" id="membersearch" onclick="membershow()"></i></label>
                                 <input name="memberNo" id="memberNo" type="text" class="form-control">
                                 <small id="emailHelp" class="form-text text-muted">opsional, diisi jika pelanggan merupakan Member</small>
                                 
@@ -60,7 +60,7 @@
                         <!-- [ product code ] -->
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="floating-label" for="productCode">Kode Produk</label>
+                                <label class="floating-label" for="productCode">Kode Produk <i class="feather icon-search" id="membersearch" onclick="productshow()"></i></label>
                                 <input name="productCode" id="productCode" type="text" class="form-control">
                             </div>
                         </div>
@@ -83,118 +83,21 @@
 </div>
 <!-- [ Main Content ] end -->
 </div>
+
+<!-- [ Main modal ] start -->
+<div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title h4" id="modaltitle"></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body" id="modalbody">
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ Main modal ] end -->
+
+@include('cashier.pos.js')
 @endsection
-
-@push('script')
-    <script>
-        // get member by member No
-        $('#memberNo').change(function()
-        {
-            $.ajax({
-                type: 'get',
-                dataType: 'json',
-                url: '/getMember/' + $(this).val(),
-                success: function(data, status)
-                {
-                    $('#memberId').val(data.member.id);
-                    let member = `
-                                <!-- [ product code ] end -->
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="floating-label" for="productCode">Nama Member</label>
-                                        <input name="memberName" id="memberName" value="${data.member.customerName}" type="text" class="form-control">
-                                    </div>
-                                </div>`
-                    $('#member').append(member);            
-                }
-            })
-        })
-
-        // get product by product code
-        $('#productCode').change(function()
-        {
-            $.ajax({
-                type: 'get',
-                url: '/getProduct/' + $(this).val(),
-                dataType: 'json',
-                success: function(data, status)
-                {
-                    let product = {
-                        productId : data.product.id,
-                        productCode : data.product.productCode,
-                        productName : data.product.productName,
-                        purchasePrice : data.product.sellingPrice,
-                        qty : 0,
-                        subTotal : 0
-                    }
-                    store(product);
-                    index()
-                }
-            })
-        })
-
-        // index drafProduct
-        function index()
-        {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.post('/index', {}, function(data){
-                $('#page').html(data);
-            })
-        }
-
-        // store drafPorduct
-        function store(product)
-        {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            }); 
-
-            $.ajax({
-                type: 'post',
-                url: '/store',
-                data: product,
-                dataType: 'json'
-            }) 
-        }
-
-        // update qty
-        function update(id, price, qty, total)
-        {
-            let subTotal = parseInt(price) * parseInt(qty);
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            }); 
-            $.ajax({
-                type: 'post',
-                url: '/update/' + id,
-                data: {id : id, qty : qty, subTotal: subTotal},
-                success: function(){
-                    index()
-                }
-            })
-        }
-
-        //  delete drafProduct
-        function destroy(id){
-            $.post('/destroy/' + id, {}, function(){
-                index()
-            })
-        }
-        
-        // truncate drop drafProduct
-        function deletedraf()
-        {
-            $.post('/deletedraf', $('form').serialize())
-        }
-    </script>
-@endpush

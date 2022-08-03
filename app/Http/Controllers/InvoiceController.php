@@ -176,6 +176,33 @@ class InvoiceController extends Controller
         return redirect()->route('printInvoice', ['id' => $invoice->id]);
     }
 
+
+    public function modalproduct()
+    {
+        return view('cashier.pos.product');
+    }
+
+    public function searchproduct(Request $request)
+    {
+        $product = Product::where('productCode', 'LIKE', "%$request->key%")
+        ->orWhere('productName', 'LIKE', "%$request->key%")->get();
+        return $product;
+    }
+
+    public function modalmember()
+    {
+        return view('cashier.pos.member');
+    }
+
+    public function searchmember(Request $request)
+    {
+        $member = Customer::where('customerNo', 'LIKE', "%$request->key%")
+        ->orWhere('customerName', 'LIKE', "%$request->key%")
+        ->orWhere('customerPhone', 'LIKE', "%$request->key%")->get();
+        
+        return $member; 
+    }
+
     /**
      * get member json
      * @param \App\Models\Customer
