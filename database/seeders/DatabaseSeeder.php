@@ -54,30 +54,6 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10)
         ]);
 
-        Suplayer::factory(10)->create();
-
-        Product::factory(10)->create();
-
-        Customer::factory(5)->create();
-
-        Company::factory(1)->create();
-
-        Category::create([
-            'categoriName' => 'pakaian'
-        ]);
-        Category::create([
-            'categoriName' => 'makanan'
-        ]);
-        Category::create([
-            'categoriName' => 'aksesoris'
-        ]);
-
-        Purchase::factory(5)->create();
-        Order::factory(10)->create();
-
-        Invoice::factory(5)->create();
-        Sale::factory(10)->create();
-
         Payment::create([
             'payment' => 'cash'
         ]);
@@ -88,6 +64,30 @@ class DatabaseSeeder extends Seeder
             'payment' => 'credit'
         ]);
 
-        Credit::factory(5)->create();
+        // Suplayer::factory(10)->create();
+
+        // Product::factory(10)->create();
+
+        // Customer::factory(5)->create();
+
+        // Company::factory(1)->create();
+
+        // Category::create([
+        //     'categoriName' => 'pakaian'
+        // ]);
+        // Category::create([
+        //     'categoriName' => 'makanan'
+        // ]);
+        // Category::create([
+        //     'categoriName' => 'aksesoris'
+        // ]);
+
+        // Purchase::factory(5)->create();
+        // Order::factory(10)->create();
+
+        // Invoice::factory(5)->create();
+        // Sale::factory(10)->create();
+
+        // Credit::factory(5)->create();
     }
 }

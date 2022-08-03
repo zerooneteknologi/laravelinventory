@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Suplayer;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -20,7 +21,7 @@ class PurchaseController extends Controller
 
     public function __construct()
     {
-        return $this->middleware('auth');
+        return $this->middleware('isWarehous');
     }
     public function index()
     {
@@ -36,8 +37,22 @@ class PurchaseController extends Controller
      */
     public function create()
     {
+        $date = Carbon::now();
+        $year = $date->year . $date->month .$date->day;
+        $purchase = Purchase::count();
+
+        if ($purchase == 0) {
+            $no = 10001;
+            $purchaseNo = 'PO'.$year.$no;
+        } else {
+            $purchase = Purchase::all('purchaseNo')->last();
+            $no = (int)substr($purchase->purchaseNo, -6) + 1;
+            $purchaseNo = 'PO'.$year.$no;
+        }
+        
         return view('warehouse.po.create', [
-            'suplayers' => Suplayer::all()
+            'suplayers' => Suplayer::all(),
+            'purchaseNo' => $purchaseNo
         ]);
     }
 

@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class CreditController extends Controller
 {
+    // autorization
+    public function __construct()
+    {
+        $this->middleware('isCashier');
+    }
+    
     /**
      * Display a listing of the resource.
      *

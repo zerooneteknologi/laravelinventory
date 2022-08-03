@@ -36,7 +36,7 @@
                     <div class="form-group row">
                         <label for="purchaseNo" class="col-sm-3 col-form-label">No PO</label>
                         <div class="col-sm-9" id="product">
-                            <input required name="purchaseNo" type="text" class="form-control" id="purchaseNo">
+                            <input name="purchaseNo" readonly value="{{ $purchaseNo }}" required type="text" class="form-control" id="purchaseNo">
                         </div>
                     </div>
                     <div class="form-group row">

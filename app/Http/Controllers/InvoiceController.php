@@ -10,10 +10,16 @@ use App\Models\Invoice;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Sale;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
+    // autorization
+    public function __construct()
+    {
+        $this->middleware('isCashier');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +39,22 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return view('cashier.pos.create');
+        $date = Carbon::now();
+        $year = $date->year . $date->month .$date->day;
+        $invoice = Invoice::count();
+
+        if ($invoice == 0) {
+            $no = 10001;
+            $invoiceNo = 'INV'.$year.$no;
+        } else {
+            $invoice = Invoice::all('invoiceNo')->last();
+            $no = (int)substr($invoice->invoiceNo, -6) + 1;
+            $invoiceNo = 'INV'.$year.$no;
+        }
+
+        return view('cashier.pos.create',[
+            'invoiceNo' => $invoiceNo
+        ]);
     }
 
     /**

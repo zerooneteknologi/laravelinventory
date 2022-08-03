@@ -39,7 +39,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="floating-label" for="invoiceNo">No invoice</label>
-                                <input name="invoiceNo" id="invoiceNo" type="text" required class="form-control">
+                                <input name="invoiceNo" id="invoiceNo" readonly value="{{ $invoiceNo}}" type="text" required class="form-control">
                             </div>
                         </div>
                         
