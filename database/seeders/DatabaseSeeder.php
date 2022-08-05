@@ -69,29 +69,29 @@ class DatabaseSeeder extends Seeder
 
         Bank::factory(2)->create();
 
-        // Suplayer::factory(10)->create();
+        Suplayer::factory(10)->create();
 
-        // Product::factory(10)->create();
+        Product::factory(10)->create();
 
-        // Customer::factory(5)->create();
+        Customer::factory(5)->create();
 
 
-        // Category::create([
-        //     'categoriName' => 'pakaian'
-        // ]);
-        // Category::create([
-        //     'categoriName' => 'makanan'
-        // ]);
-        // Category::create([
-        //     'categoriName' => 'aksesoris'
-        // ]);
+        Category::create([
+            'categoriName' => 'pakaian'
+        ]);
+        Category::create([
+            'categoriName' => 'makanan'
+        ]);
+        Category::create([
+            'categoriName' => 'aksesoris'
+        ]);
 
-        // Purchase::factory(5)->create();
-        // Order::factory(10)->create();
+        Purchase::factory(5)->create();
+        Order::factory(10)->create();
 
-        // Invoice::factory(5)->create();
-        // Sale::factory(10)->create();
+        Invoice::factory(5)->create();
+        Sale::factory(10)->create();
 
-        // Credit::factory(5)->create();
+        Credit::factory(5)->create();
     }
 }

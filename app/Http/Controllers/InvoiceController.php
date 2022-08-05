@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bank;
 use App\Models\Company;
 use App\Models\Credit;
 use App\Models\Customer;
@@ -128,7 +129,8 @@ class InvoiceController extends Controller
             'invoice' => $invoice,
             'sales' => Sale::where('invoiceId', $invoice->id)->get(),
             'sum' => Sale::where('invoiceId', $invoice->id)->sum('subTotal'),
-            'payments' => Payment::all()
+            'payments' => Payment::all(),
+            'banks' => Bank::all()
         ]);
 
         // return $invoice;
@@ -151,14 +153,21 @@ class InvoiceController extends Controller
                     'payment' => $request->payment,
                     'pay' => $request->pay,
                     'discount' => $request->discount,
-                    'payTotal' => $request->pay,
+                    'payTotal' => $request->payTotal,
                     'cash' => $request->cash,
                     'refund' => $request->refund
                 ]);
             } elseif ($request->payment == 'tranfer') {
 
-                // methode transfer
-                return $request->recNo;
+                // methode tranfer
+                Invoice::where('id', $invoice->id)->update([
+                    'payment' => $request->payment,
+                    'pay' => $request->pay,
+                    'discount' => $request->discount,
+                    'payTotal' => $request->payTotal,
+                    'cash' => $request->cash,
+                    'refund' => $request->refund
+                ]);
             } elseif ($request->payment == 'credit') {
 
                 // methode credit
@@ -166,7 +175,7 @@ class InvoiceController extends Controller
                     'payment' => $request->payment,
                     'pay' => $request->pay,
                     'discount' => $request->discount,
-                    'payTotal' => $request->pay,
+                    'payTotal' => $request->payTotal,
                     'cash' => $request->cash,
                     'refund' => $request->refund
                 ]);
@@ -190,7 +199,14 @@ class InvoiceController extends Controller
                     'refund' => $request->refund
                 ]);
             } elseif ($request->payment == 'tranfer') {
-                return $request->recNo;
+                // methode tranfer
+                Invoice::where('id', $invoice->id)->update([
+                    'payment' => $request->payment,
+                    'pay' => $request->pay,
+                    'payTotal' => $request->pay,
+                    'cash' => $request->cash,
+                    'refund' => $request->refund
+                ]);
             }
         }
 

@@ -103,7 +103,7 @@
                                     <select name="payment" id="payment" class="form-control form-control-sm">
                                         <option>Pilih Metode</option>
                                         <option value="cash">cash</option>
-                                        <option value="Transfer">Transfer</option>
+                                        <option value="tranfer">Transfer</option>
                                     </select>
                                 @endif
                             </div>
@@ -122,7 +122,7 @@
                             <div class="form-group row">
                                 <strong for="discount" class="col-sm-5 col-form-label col-form-label-sm">Potongan (%)</strong>
                                 <div class="col-sm-7">
-                                    <input name="discount" id="discount" value="0" type="number" class="form-control form-control-sm">
+                                    <input name="discount" id="discount" required type="number" class="form-control form-control-sm">
                                 </div>
                             </div>
                         @endif
@@ -154,11 +154,30 @@
                         </div>`
             $('#page').append(cash);
         }else if ($(this).val() == 'tranfer') {
-            let cash = `<div class="form-group row">
-                            <strong for="recNo" class="col-sm-5 col-form-label col-form-label">No Rekening</strong>
-                            <div class="col-sm-7">
-                                <input name="recNo" id="recNo" value="recno" readonly type="text" class="form-control form-control-sm">
-                            </div>
+            // $.get('/bank', {}, function(data, status){
+            //     console.log(data);
+            // })
+            let cash = `<div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Bank</th>
+                                        <th>Akun pemilik</th>
+                                        <th>No Rekening</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($banks as $bank)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $bank->bankName}}</td>
+                                            <td>{{ $bank->acountBank}}</td>
+                                            <td>{{ $bank->noReck}}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>`
             $('#page').append(cash);
         } else if ($(this).val() == 'credit') {
