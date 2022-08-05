@@ -36,6 +36,12 @@
 </div>
 
 <div class="row">
+	<!-- [ acoun bank ] start -->
+    @include('setting.bank.index')
+	<!-- [ acoun bank ] end -->
+</div>
+
+<div class="row">
 <!-- [ users-table ] start -->
 @include('setting.user.user')
 <!-- [ users-table ] end -->

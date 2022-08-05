@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BankController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CreditController;
@@ -56,6 +57,8 @@ Route::get('/searchmember', [InvoiceController::class, 'searchmember']);
 Route::get('/searchproduct', [InvoiceController::class, 'searchproduct']);
 
 Route::resource('/credit', CreditController::class)->only(['edit', 'update']);
+
+Route::resource('/bank', BankController::class);
 
 Route::post('/index', [OrderController::class, 'index']);
 Route::post('/store', [OrderController::class, 'store']);

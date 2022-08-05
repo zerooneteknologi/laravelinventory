@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bank;
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,7 +21,8 @@ class SettingController extends Controller
     {
         return view('setting.setting', [
             'companies' => Company::all(),
-            'users' => User::all()
+            'users' => User::all(),
+            'banks' => Bank::all()
         ]);
     }
 }
