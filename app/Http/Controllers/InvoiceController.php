@@ -151,7 +151,7 @@ class InvoiceController extends Controller
                     'payment' => $request->payment,
                     'pay' => $request->pay,
                     'discount' => $request->discount,
-                    'payTotal' => $request->payTotal,
+                    'payTotal' => $request->pay,
                     'cash' => $request->cash,
                     'refund' => $request->refund
                 ]);
@@ -166,7 +166,7 @@ class InvoiceController extends Controller
                     'payment' => $request->payment,
                     'pay' => $request->pay,
                     'discount' => $request->discount,
-                    'payTotal' => $request->payTotal,
+                    'payTotal' => $request->pay,
                     'cash' => $request->cash,
                     'refund' => $request->refund
                 ]);

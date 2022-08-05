@@ -19,7 +19,7 @@
                     </td>
                     <td><input name="productName[]" id="productName" type="text" class="form-control-plaintext" value="{{ $drafProduct->productName}}"></td>
                     <td><input name="price[]" id="price" type="text" class="form-control-plaintext" value="{{ $drafProduct->price}}"></td>
-                    <td><input name="qty[]" id="qty" type="number" class="form-control" value="{{ $drafProduct->qty}}" onchange="update({{$drafProduct->id}}, $('#price').val(), $(this).val(), $('#subTotal').val())"></td>
+                    <td><input name="qty[]" id="qty" type="number" class="form-control" value="{{ $drafProduct->qty}}" onchange="drafproduct({{$drafProduct->id}}, $(this).val())"></td>
                     <td><input name="subTotal[]" id="subTotal" type="text" class="form-control-plaintext" value="{{ $drafProduct->total}}"></td>
                     <td><a onclick="destroy({{$drafProduct->id}})" class="badge badge-danger badge-pill"><i class="feather icon-trash-2"></i></a></td>
                 </tr>

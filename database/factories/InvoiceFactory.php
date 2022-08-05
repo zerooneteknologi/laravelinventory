@@ -21,7 +21,7 @@ class InvoiceFactory extends Factory
             'memberId' => mt_rand(1, 5),
             'payment' => 'cash',
             'invoiceNo' => Str::random(4),
-            'date' => now(),
+            'date' => $this->faker->dateTimeThisMonth(),
             'payTotal' => $this->faker->randomNumber(4, true)
         ];
     }

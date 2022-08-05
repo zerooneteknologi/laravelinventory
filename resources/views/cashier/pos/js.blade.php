@@ -77,6 +77,29 @@
             }) 
         }
 
+        // get draf product by id
+        function drafproduct(id, qty)
+        {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type:'post',
+                url: '/drafproduct',
+                data: {id: id},
+                success: function(data, status){
+                    $.each(data, function(key, value){
+                        $.each(value, function(key, product){
+                            update(id, product.price, qty, product.total);
+                        })
+                    })
+                }
+            })
+        }
+
         // update qty
         function update(id, price, qty, total)
         {

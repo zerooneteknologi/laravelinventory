@@ -21,7 +21,7 @@ class PurchaseFactory extends Factory
     {
         return [
             'purchaseNo' => Str::random(5),
-            'date' => now(),
+            'date' => $this->faker->dateTimeThisMonth(),
             'suplayerId' => mt_rand(1, 5),
             'payTotal' => $this->faker->randomNumber(4, true)
         ];

@@ -42,6 +42,13 @@ class OrderController extends Controller
         ]);
     }
 
+    public function drafproduct(Request $request)
+    {
+        return response()->json([
+            'drafproduct' => DrafProduct::where('id', $request->id)->get()
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      *

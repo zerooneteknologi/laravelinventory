@@ -59,6 +59,7 @@ Route::resource('/credit', CreditController::class)->only(['edit', 'update']);
 
 Route::post('/index', [OrderController::class, 'index']);
 Route::post('/store', [OrderController::class, 'store']);
+Route::post('/drafproduct', [OrderController::class, 'drafproduct']);
 Route::post('/update/{id}', [OrderController::class, 'update']);
 Route::post('/destroy/{id}', [OrderController::class, 'destroy']);
 Route::post('/deletedraf', [OrderController::class, 'deletedraf']);

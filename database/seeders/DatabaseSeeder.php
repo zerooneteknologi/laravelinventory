@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Bank;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Credit;
@@ -54,6 +55,8 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10)
         ]);
 
+        Company::factory(1)->create();
+
         Payment::create([
             'payment' => 'cash'
         ]);
@@ -64,13 +67,14 @@ class DatabaseSeeder extends Seeder
             'payment' => 'credit'
         ]);
 
+        Bank::factory(2)->create();
+
         // Suplayer::factory(10)->create();
 
         // Product::factory(10)->create();
 
         // Customer::factory(5)->create();
 
-        // Company::factory(1)->create();
 
         // Category::create([
         //     'categoriName' => 'pakaian'

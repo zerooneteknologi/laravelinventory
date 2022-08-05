@@ -20,7 +20,7 @@ class CreditFactory extends Factory
         return [
             'memberId' => mt_rand(1, 5),
             'invoiceId' => mt_rand(1, 5),
-            'date' => now(),
+            'date' => $this->faker->dateTimeThisMonth(),
             'credit' => $this->faker->randomNumber(3, true),
             'debt' => $this->faker->randomNumber(3, true),
             'expired' =>  date('Y-m-d', time() + 2592000)
