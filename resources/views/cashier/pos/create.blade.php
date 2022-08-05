@@ -47,9 +47,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="floating-label" for="memberNo">No Member <i class="feather icon-search" id="membersearch" onclick="membershow()"></i></label>
-                                <input name="memberNo" id="memberNo" type="text" class="form-control">
+                                <input name="memberNo" id="memberNo" type="text" class="form-control" list="listmember">
+                                <datalist id="listmember">
+                                    @foreach ($members as $member)
+                                        <option value="{{$member->customerName}}">
+                                    @endforeach
+                                </datalist> 
                                 <small id="emailHelp" class="form-text text-muted">opsional, diisi jika pelanggan merupakan Member</small>
-                                
                                 <!-- [ member id ] -->
                                 <input name="memberId" id="memberId" type="hidden" class="form-control">
                             </div>
@@ -61,7 +65,12 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="floating-label" for="productCode">Kode Produk <i class="feather icon-search" id="membersearch" onclick="productshow()"></i></label>
-                                <input name="productCode" id="productCode" type="text" class="form-control">
+                                <input name="productCode" id="productCode" list="productlist" type="text" class="form-control">
+                                <datalist id="productlist">
+                                    @foreach ($products as $product)
+                                        <option value="{{ $product->productName}}">
+                                    @endforeach
+                                </datalist>
                             </div>
                         </div>
                     </div>

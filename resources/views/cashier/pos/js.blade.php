@@ -18,7 +18,7 @@
                                         <input name="memberName" id="memberName" value="${data.member.customerName}" type="text" class="form-control">
                                     </div>
                                 </div>`
-                    $('#member').append(member);            
+                    $('#member').append(member); 
                 }
             })
         })

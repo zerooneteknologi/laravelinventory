@@ -54,7 +54,9 @@ class InvoiceController extends Controller
         }
 
         return view('cashier.pos.create',[
-            'invoiceNo' => $invoiceNo
+            'invoiceNo' => $invoiceNo,
+            'members' => Customer::all(),
+            'products' => Product::all()
         ]);
     }
 
